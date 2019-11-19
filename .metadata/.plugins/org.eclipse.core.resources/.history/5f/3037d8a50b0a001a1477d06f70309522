@@ -1,0 +1,32 @@
+package com.finnovative.model;
+
+import java.util.Date;
+
+import javax.persistence.Entity;
+
+import org.springframework.stereotype.Component;
+
+@Component
+@Entity
+public class EmiCard {
+	
+	private String cardType;
+	private Date validityStartDate;
+	private Date validityEndDate;
+	private String cardStatus;
+	private double totalCredit;
+	private double creditUsed;
+	private double remainingCredit;
+	
+
+}
+
+/*card_number number(16) primary key,
+card_type varchar2(10),
+validity_start date,
+validity_exp date,
+card_status varchar2(20) default 'DEACTIVATED',
+total_credit number(8,2) NOT NULL,
+credit_used number(8,2),
+remaining_credit number(8,2)
+user one to one*/

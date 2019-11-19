@@ -1,0 +1,20 @@
+package com.finnovative.model;
+
+import javax.persistence.Entity;
+
+import org.springframework.stereotype.Component;
+
+@Entity
+@Component
+public class EmiPlan {
+
+	
+}
+
+/*EMI_NO NUMBER(10) Primary Key,
+
+start_date date,
+end_date date,
+no_of_months number,
+emi_status varchar2(10),
+emi_amount number(10,3),*/

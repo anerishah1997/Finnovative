@@ -1,0 +1,17 @@
+package com.finnovative.model;
+
+import javax.persistence.Entity;
+
+import org.springframework.stereotype.Component;
+
+@Component
+@Entity
+public class Installment {
+
+	
+}
+
+/*Installment_id number(10) Primary Key,
+Installment_no number(10),
+Date_paid date,
+Due_date date*/

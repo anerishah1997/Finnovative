@@ -1,0 +1,18 @@
+package com.finnovative.model;
+
+import javax.persistence.Entity;
+
+import org.springframework.stereotype.Component;
+
+@Entity
+@Component
+public class Product {
+
+}
+
+/*product_id number(5) Primary Key,
+product_name varchar2(40) NOT NULL,
+product_desc varchar2(100),
+product_price number(5) NOT NULL,
+product_img blob,
+transaction one to many*/

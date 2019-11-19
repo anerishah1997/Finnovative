@@ -1,0 +1,16 @@
+package com.finnovative.model;
+
+import javax.persistence.Entity;
+
+import org.springframework.stereotype.Component;
+
+@Component
+@Entity
+public class Transaction {
+
+	private int transactionId;
+	private int quantity;
+}
+
+/*transaction_id number(10) primary key,
+quantity number(2)*/
