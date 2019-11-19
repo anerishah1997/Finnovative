@@ -3,7 +3,6 @@ package com.finnovative.model;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -21,33 +20,21 @@ import org.springframework.stereotype.Component;
 public class Users {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="seq")
-	@SequenceGenerator(name="seq",sequenceName="user_seq",allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="u1")
+	//@SequenceGenerator(name="u1",sequenceName="user_seq",allocationSize=1,)
 	private int userId;
-
 	private String fullName;
-
 	private int mobileNumber;
-
 	private String emailId;
-
 	private String username;
-
 	private String password;
-
 	private String address;
-
 	private double annualIncome;
-
 	private String cardType;
-	
 	private String bankName;
-
 	private int accountNumber;
-
 	private String ifscCode;
 	private String aadhaarDoc;
-	private String status;
 	@OneToOne(mappedBy="user",cascade=CascadeType.ALL)
 	EmiCard card;
 	@OneToMany(mappedBy="user",cascade=CascadeType.ALL,fetch=FetchType.EAGER)
@@ -177,16 +164,16 @@ public class Users {
 
 }
 
-/*userId number(8) primary key,
+/*user_id number(8) primary key,
 fullname varchar2(45) NOT NULL,
-mobilenumber number(10) NOT NULL,
+phone_number number(10) NOT NULL,
 email varchar2(50) NOT NULL,
 username varchar2(20)NOT NULL PRIMARY KEY,
 password varchar2(25) NOT NULL UNIQUE ,
 address varchar2(60) NOT NULL,
-annualincome number(8,2) NOT NULL, 
-cardtype varchar2(12),
-bankname varchar2(30) NOT NULL,
-accountnumber number(12) UNIQUE ,
-ifsccode varchar2(12),
-aadhardoc varchar2(10)*/
+annual_income number(8,2) NOT NULL, 
+card_type varchar2(12),
+bank_name varchar2(30) NOT NULL,
+account_number number(12) UNIQUE ,
+ifsc_code varchar2(12),
+aadhar_document blob*/
