@@ -1,0 +1,97 @@
+
+//EMI USER
+
+create table user(
+
+user_id number(8) primary key,
+fullname varchar2(45) NOT NULL,
+phone_number number(10) NOT NULL,
+email varchar2(50) NOT NULL,
+username varchar2(20)NOT NULL PRIMARY KEY,
+password varchar2(25) NOT NULL UNIQUE ,
+address varchar2(60) NOT NULL,
+annual_income number(8,2) NOT NULL, 
+card_type varchar2(12),
+bank_name varchar2(30) NOT NULL,
+account_number number(12) UNIQUE ,
+ifsc_code varchar2(12),
+aadhar_document blob
+);
+
+
+//ADMIN
+
+create table admin(
+username varchar2(20) Primary Key,
+password varchar2(20)
+)
+
+//EMI PLAN
+
+create table emiplan(
+EMI_NO NUMBER(10) Primary Key,
+start_date date,
+end_date date,
+no_of_months number,
+emi_status varchar2(10),
+emi_amount number(10,3)
+transaction_id foreign key one to one
+installment one to many
+
+)
+
+//PRODUCTS
+create table product
+(
+product_id number(5) Primary Key,
+product_name varchar2(40) NOT NULL,
+product_desc varchar2(100),
+product_price number(10,3) NOT NULL,
+product_img blob,
+transaction one to many
+
+);
+
+alter table emiproducts add UNIQUE (product_name)
+
+
+//EMI CARD
+
+create table emicard(
+card_number number(16) primary key,
+card_type varchar2(10),
+validity_start date,
+validity_exp date,
+card_status varchar2(20) default 'DEACTIVATED',
+total_credit number(8,2) NOT NULL,
+credit_used number(8,2),
+remaining_credit number(8,2)
+user one to one
+);
+
+
+//installment
+
+create table Installment(
+
+Installment_id number(10) Primary Key,
+Installment_no number(10),
+Date_paid date,
+Due_date date 
+emiplan many to one
+
+);
+
+//transaction
+
+create table transactions(
+transaction_id number(10) primary key,
+quantity number(2)
+user many to one,
+product many to one,
+emiplan one to one
+);
+
+
+
+
