@@ -14,7 +14,7 @@ public class Admin {
 	private String password;
 	public Admin() {
 		super();
-		// TODO Auto-generated constructor stub
+		// Second Commit
 	}
 	public Admin(String username, String password) {
 		super();

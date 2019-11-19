@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Entity
 public class EmiCard {
-	@SequenceGenerator()
+	
 	@Id
 	private int cardNo;
 	private String cardType;
