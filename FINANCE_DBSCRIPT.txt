@@ -7,14 +7,16 @@ user_id number(8) primary key,
 fullname varchar2(45) NOT NULL,
 phone_number number(10) NOT NULL,
 email varchar2(50) NOT NULL,
-username varchar2(20)NOT NULL PRIMARY KEY,
-password varchar2(25) NOT NULL UNIQUE ,
+username varchar2(20)NOT NULL UNIQUE,
+password varchar2(25) NOT NULL ,
 address varchar2(60) NOT NULL,
 annual_income number(8,2) NOT NULL, 
 card_type varchar2(12),
 bank_name varchar2(30) NOT NULL,
 account_number number(12) UNIQUE ,
 ifsc_code varchar2(12),
+verified varchar(5) default 'NO',
+approved varchar(5) default 'NO',
 aadhar_document blob
 );
 
