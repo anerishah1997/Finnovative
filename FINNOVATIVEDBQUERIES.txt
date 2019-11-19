@@ -1,0 +1,8 @@
+Queries
+
+
+
+****Insert data in product***
+
+INSERT INTO product 
+VALUES (1001, 'OnePlus 7','OnePlus 7 (6GB,128GB)',33000, utl_raw.cast_to_raw('C:\Users\AW204_PC9\Desktop\images.jpg'));
