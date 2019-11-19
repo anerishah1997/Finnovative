@@ -1,17 +1,20 @@
 package com.finnovative.model;
-
 import java.util.Date;
-
+import java.util.Random;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import org.springframework.stereotype.Component;
-
 @Component
 @Entity
 public class EmiCard {
-	
 	@Id
+	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="seq")
+	@SequenceGenerator(name="seq",sequenceName="emicardno_seq",allocationSize=442316984)
 	private int cardNo;
 	private String cardType;
 	private Date validityStartDate;
@@ -20,14 +23,24 @@ public class EmiCard {
 	private double totalCredit;
 	private double creditUsed;
 	private double remainingCredit;
-	public EmiCard() {
-		super();
-		// TODO Auto-generated constructor stub
+	public EmiCard()
+	{
+		super();	
 	}
-	public EmiCard(int cardNo, String cardType, Date validityStartDate, Date validityEndDate, String cardStatus, double totalCredit,
+	@OneToOne
+	@JoinColumn(name="userId")
+	Users user;
+	public Users getUser() {
+		return user;
+	}
+	public void setUser(Users user) {
+		this.user = user;
+	}
+	public EmiCard( String cardType, Date validityStartDate, Date validityEndDate, String cardStatus, double totalCredit,
 			double creditUsed, double remainingCredit) {
 		super();
-		this.cardNo = cardNo;
+		Random rng = new Random();
+		this.cardNo = 445678924 + rng.nextInt(1000);
 		this.cardType = cardType;
 		this.validityStartDate = validityStartDate;
 		this.validityEndDate = validityEndDate;
@@ -36,8 +49,6 @@ public class EmiCard {
 		this.creditUsed = creditUsed;
 		this.remainingCredit = remainingCredit;
 	}
-	
-	
 	public int getCardNo() {
 		return cardNo;
 	}
@@ -90,14 +101,8 @@ public class EmiCard {
 	public String toString() {
 		return "EmiCard [cardNo=" + cardNo + ", cardType=" + cardType + ", validityStartDate=" + validityStartDate
 				+ ", validityEndDate=" + validityEndDate + ", cardStatus=" + cardStatus + ", totalCredit=" + totalCredit
-				+ ", creditUsed=" + creditUsed + ", remainingCredit=" + remainingCredit + "]";
+				+ ", creditUsed=" + creditUsed + ", remainingCredit=" + remainingCredit + ", user=" + user + "]";
 	}
-	
-	
-	
-	
-	
-
 }
 
 /*card_number number(16) primary key,

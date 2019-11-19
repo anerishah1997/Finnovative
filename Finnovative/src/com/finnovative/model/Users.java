@@ -1,7 +1,15 @@
 package com.finnovative.model;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
 
 import org.springframework.stereotype.Component;
 
@@ -23,6 +31,22 @@ public class Users {
 	private int accountNumber;
 	private String ifscCode;
 	private String aadhaarDoc;
+	@OneToOne(mappedBy="user",cascade=CascadeType.ALL)
+	EmiCard card;
+	@OneToMany(mappedBy="user",cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	private Set<Transaction>transaction;
+	public EmiCard getCard() {
+		return card;
+	}
+	public void setCard(EmiCard card) {
+		this.card = card;
+	}
+	public Set<Transaction> getTransaction() {
+		return transaction;
+	}
+	public void setTransaction(Set<Transaction> transaction) {
+		this.transaction = transaction;
+	}
 	public Users() {
 		super();
 		// TODO Auto-generated constructor stub

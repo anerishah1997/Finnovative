@@ -1,7 +1,11 @@
 package com.finnovative.model;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -16,13 +20,15 @@ public class Product {
 	private String productDetails;
 	private double productPrice;
 	private MultipartFile productImage;
-
+	
+	@OneToMany(mappedBy="product",cascade=CascadeType.ALL)
+	private Set<Transaction> transaction;
+	public void setTransaction(Set<Transaction> transaction) {
+		this.transaction = transaction;
+	}
 	public Product() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-
-
 	public Product(int productId, String productName, String productDetails, double productPrice,
 			MultipartFile productImage) {
 		super();
@@ -32,8 +38,6 @@ public class Product {
 		this.productPrice = productPrice;
 		this.productImage = productImage;
 	}
-
-
 	public int getProductId() {
 		return productId;
 	}

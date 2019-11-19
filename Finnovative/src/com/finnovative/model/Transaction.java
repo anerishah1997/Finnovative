@@ -1,7 +1,11 @@
 package com.finnovative.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 import org.springframework.stereotype.Component;
 
@@ -10,16 +14,43 @@ import org.springframework.stereotype.Component;
 public class Transaction {
 
 	@Id
-	private int transactionId;
+	private static int transactionId=0;
 	private int quantity;
+	
+	@ManyToOne
+	@JoinColumn(name="userId")
+	private Users user;
+	
+	@ManyToOne
+	@JoinColumn(name="productId")
+	private Product product;
+	public Users getUser() {
+		return user;
+	}
+	public void setUser(Users user) {
+		this.user = user;
+	}
+	public Product getProduct() {
+		return product;
+	}
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+	@OneToOne(mappedBy="transaction",cascade=CascadeType.ALL)
+	EmiPlan emiplan;
+	public EmiPlan getEmiplan() {
+		return emiplan;
+	}
+	public void setEmiplan(EmiPlan emiplan) {
+		this.emiplan = emiplan;
+	}
 	public Transaction() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 	public Transaction(int transactionId, int quantity) {
 		super();
-		this.transactionId = transactionId;
-		this.quantity = quantity;
+		this.transactionId = transactionId++;
 	}
 	public int getTransactionId() {
 		return transactionId;
