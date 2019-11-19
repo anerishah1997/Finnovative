@@ -1,9 +1,16 @@
 package com.finnovative.model;
 
 import java.util.Date;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import org.springframework.stereotype.Component;
 
@@ -12,19 +19,44 @@ import org.springframework.stereotype.Component;
 public class EmiPlan {
 
 	@Id
-	private int emiNo;
+	
+	private  static int emiNo=0;
+
 	private Date startDate;
+
 	private Date endDate;
+
 	private int noOfMonths;
+
+	private int installmentId;
+	@OneToMany(mappedBy="EmiPlan",cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	
+	private Set<Installment> installment;
+	
+	public Set<Installment> getInstallment() {
+		return installment;
+	}
+	public void setInstallment(Set<Installment> installment) {
+		this.installment = installment;
+	}
 	private String emiStatus;
 	private double emiAmount;
+	@OneToOne
+	@JoinColumn(name="transactionId")
+	private Transaction transaction;
+	
+	public Transaction getTransaction() {
+		return transaction;
+	}
+	public void setTransaction(Transaction transaction) {
+		this.transaction = transaction;
+	}
 	public EmiPlan() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-	public EmiPlan(int emiNo, Date startDate, Date endDate, int noOfMonths, String emiStatus, double emiAmount) {
+	public EmiPlan( Date startDate, Date endDate, int noOfMonths, String emiStatus, double emiAmount) {
 		super();
-		this.emiNo = emiNo;
+		this.emiNo = emiNo++;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.noOfMonths = noOfMonths;
@@ -79,9 +111,8 @@ public class EmiPlan {
 }
 
 /*EMI_NO NUMBER(10) Primary Key,
-
 start_date date,
 end_date date,
 no_of_months number,
 emi_status varchar2(10),
-emi_amount number(10,3),*/
+emi_amount number(10,3)*/

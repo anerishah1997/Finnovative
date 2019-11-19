@@ -2,8 +2,11 @@ package com.finnovative.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import org.springframework.stereotype.Component;
 
@@ -12,17 +15,34 @@ import org.springframework.stereotype.Component;
 public class Installment {
 
 	@Id
-	private int installmentId;
+	private  static int installmentId=0;
 	private int installmentNo;
 	private Date datePaid;
 	private Date dueDate;
+	private String installmentStatus;
+	private int emiNo;//fk
+	public String getInstallmentStatus() {
+		return installmentStatus;
+	}
+	public void setInstallmentStatus(String installmentStatus) {
+		this.installmentStatus = installmentStatus;
+	}
+	@ManyToOne
+	@JoinColumn(name="emiNo")
+	private EmiPlan emiplan;
+	public EmiPlan getEmiplan() {
+		return emiplan;
+	}
+	public void setEmiplan(EmiPlan emiplan) {
+		this.emiplan = emiplan;
+	}
 	public Installment() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 	public Installment(int installmentId, int installmentNo, Date datePaid, Date dueDate) {
 		super();
-		this.installmentId = installmentId;
+		this.installmentId = installmentId++;
 		this.installmentNo = installmentNo;
 		this.datePaid = datePaid;
 		this.dueDate = dueDate;
@@ -53,9 +73,10 @@ public class Installment {
 	}
 	@Override
 	public String toString() {
-		return "Installment [installmentId=" + installmentId + ", installmentNo=" + installmentNo + ", datePaid="
-				+ datePaid + ", dueDate=" + dueDate + "]";
+		return "Installment [installmentNo=" + installmentNo + ", datePaid=" + datePaid + ", dueDate=" + dueDate
+				+ ", installmentStatus=" + installmentStatus + ", emiplan=" + emiplan + "]";
 	}
+	
 	
 	
 	
@@ -64,4 +85,6 @@ public class Installment {
 /*Installment_id number(10) Primary Key,
 Installment_no number(10),
 Date_paid date,
-Due_date date*/
+Due_date date,
+Installment_status varchar2(10) 
+*/

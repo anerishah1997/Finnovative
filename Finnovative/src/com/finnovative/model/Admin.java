@@ -1,20 +1,18 @@
 package com.finnovative.model;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-
 import org.springframework.stereotype.Component;
-
 @Entity
 @Component
 public class Admin {
-	
 	@Id
+
 	private String username;
+
 	private String password;
 	public Admin() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public Admin(String username, String password) {
 		super();
