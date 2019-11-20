@@ -2,15 +2,20 @@ package com.finnovative.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
+
 import org.springframework.stereotype.Component;
+
 @Entity
 @Component
+@Table(name="admin")
 public class Admin {
 	@Id
-
+	@Column
 	private String username;
-
+	@Column
 	private String password;
+	
 	public Admin() {
 		super();
 	}

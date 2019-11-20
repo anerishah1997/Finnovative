@@ -3,6 +3,7 @@ package com.finnovative.model;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -17,25 +18,42 @@ import org.springframework.stereotype.Component;
 
 @Entity
 @Component
+
 public class Users {
-	
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="u1")
-	//@SequenceGenerator(name="u1",sequenceName="user_seq",allocationSize=1,)
+	@SequenceGenerator(name="u1",sequenceName="users_se",allocationSize=1)
+	@Column(name="user_id")
 	private int userId;
+	@Column(name="fullName")
 	private String fullName;
-	private int mobileNumber;
+	@Column(name="phone_number")
+	private String mobileNumber;
+	@Column(name="email")
 	private String emailId;
+	@Column(name="username")
 	private String username;
+	@Column(name="password")
 	private String password;
+	@Column(name="address")
 	private String address;
+	@Column(name="annual_Income")
 	private double annualIncome;
+	@Column(name="card_Type")
 	private String cardType;
+	@Column(name="bank_Name")
 	private String bankName;
-	private int accountNumber;
+	@Column(name="account_Number")
+	private long accountNumber;
+	@Column(name="ifsc_Code")
 	private String ifscCode;
+	@Column(name="verified")
+	private String verified;
+	@Column(name="approved")
+	private String approved;
+	@Column(name="aadhar_Document")
 	private String aadhaarDoc;
-	@OneToOne(mappedBy="user",cascade=CascadeType.ALL)
+	/*@OneToOne(mappedBy="user",cascade=CascadeType.ALL)
 	EmiCard card;
 	@OneToMany(mappedBy="user",cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	private Set<Transaction>transaction;
@@ -50,14 +68,15 @@ public class Users {
 	}
 	public void setTransaction(Set<Transaction> transaction) {
 		this.transaction = transaction;
-	}
+	}*/
 	public Users() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Users(int userId, String fullName, int mobileNumber, String emailId, String username, String password,
-			String address, double annualIncome, String cardType, String bankName, int accountNumber, String ifscCode,
-			String aadhaarDoc) {
+	
+	public Users(int userId, String fullName, String mobileNumber, String emailId, String username, String password,
+			String address, double annualIncome, String cardType, String bankName, long accountNumber, String ifscCode,
+			String verified, String approved, String aadhaarDoc) {
 		super();
 		this.userId = userId;
 		this.fullName = fullName;
@@ -71,8 +90,11 @@ public class Users {
 		this.bankName = bankName;
 		this.accountNumber = accountNumber;
 		this.ifscCode = ifscCode;
+		this.verified = verified;
+		this.approved = approved;
 		this.aadhaarDoc = aadhaarDoc;
 	}
+
 	public int getUserId() {
 		return userId;
 	}
@@ -85,10 +107,10 @@ public class Users {
 	public void setFullName(String fullName) {
 		this.fullName = fullName;
 	}
-	public int getMobileNumber() {
+	public String getMobileNumber() {
 		return mobileNumber;
 	}
-	public void setMobileNumber(int mobileNumber) {
+	public void setMobileNumber(String mobileNumber) {
 		this.mobileNumber = mobileNumber;
 	}
 	public String getEmailId() {
@@ -133,10 +155,10 @@ public class Users {
 	public void setBankName(String bankName) {
 		this.bankName = bankName;
 	}
-	public int getAccountNumber() {
+	public long getAccountNumber() {
 		return accountNumber;
 	}
-	public void setAccountNumber(int accountNumber) {
+	public void setAccountNumber(long accountNumber) {
 		this.accountNumber = accountNumber;
 	}
 	public String getIfscCode() {
@@ -151,13 +173,34 @@ public class Users {
 	public void setAadhaarDoc(String aadhaarDoc) {
 		this.aadhaarDoc = aadhaarDoc;
 	}
+	
+	
+	public String getVerified() {
+		return verified;
+	}
+
+	public void setVerified(String verified) {
+		this.verified = verified;
+	}
+
+	public String getApproved() {
+		return approved;
+	}
+
+	public void setApproved(String approved) {
+		this.approved = approved;
+	}
+
 	@Override
 	public String toString() {
 		return "Users [userId=" + userId + ", fullName=" + fullName + ", mobileNumber=" + mobileNumber + ", emailId="
 				+ emailId + ", username=" + username + ", password=" + password + ", address=" + address
 				+ ", annualIncome=" + annualIncome + ", cardType=" + cardType + ", bankName=" + bankName
-				+ ", accountNumber=" + accountNumber + ", ifscCode=" + ifscCode + ", aadhaarDoc=" + aadhaarDoc + "]";
+				+ ", accountNumber=" + accountNumber + ", ifscCode=" + ifscCode + ", verified=" + verified
+				+ ", approved=" + approved + ", aadhaarDoc=" + aadhaarDoc + "]";
 	}
+
+	
 	
 	
 	
