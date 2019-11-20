@@ -4,12 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
- <link rel="stylesheet" href="WEB_INF/css/nav.css">
+ <link rel="stylesheet" href="css/nav.css">
 <title>Insert title here</title>
 </head>
 <body>
  <div class="navbar">
-            <a href="index.jsp"><i class="fa fa-fw fa-home"></i> Home</a>
+            <a href="index"><i class="fa fa-fw fa-home"></i> Home</a>
             <!-- <a href="register.html"><i class="fa fa-fw fa-search"></i> Register</a> -->
             <!-- <a href="productlist.html"><i class="fa fa-fw fa-envelope"></i> Browse Products</a> -->
             <!-- <a href="userlogin.html"><i class="fa fa-fw fa-user"></i> Login</a> -->

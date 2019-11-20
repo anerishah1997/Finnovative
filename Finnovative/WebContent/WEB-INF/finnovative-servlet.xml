@@ -38,4 +38,5 @@ http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 		<property name="entityManagerFactory" ref="emf"/>
 	</bean>
 	<tx:annotation-driven transaction-manager="transactionManager"/>
+	<mvc:resources location="/css/" mapping="/css/**"/>
 </beans>

@@ -4,13 +4,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-  <link rel="stylesheet" href="WEB_INF/css/nav.css">
+  <link rel="stylesheet" href="css/nav.css">
 <title>Finnovative Finance Services</title>
 </head>
 <body>
 <h1><b><i>FINNOVATIVE</i></b></h1>
     <div class="navbar">
-            <a href="index.jsp"><i class="fa fa-fw fa-home"></i> Home</a>
+            <a href="indexPage"><i class="fa fa-fw fa-home"></i> Home</a>
             <a href="registerPage"><i class="fa fa-fw fa-search"></i> Register</a>
             <a href="productlist.jsp"><i class="fa fa-fw fa-envelope"></i> Browse Products</a>
             <a href="userloginPage"><i class="fa fa-fw fa-user"></i> Login</a>
