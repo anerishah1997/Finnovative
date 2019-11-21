@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 </head>
-<body onload="">
-<h1>REGISTRATION SUCCESFULL</h1>
+<body>
+Nikal...pehli fursat me nikal
 </body>
 </html>

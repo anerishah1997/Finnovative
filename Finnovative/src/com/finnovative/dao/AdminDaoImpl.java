@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
@@ -30,27 +31,42 @@ public class AdminDaoImpl implements AdminDao{
 	}
 
 	@Override
-	public List<Admin> readAllUsers() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Users> readAllUsers() {
+		String query = "Select u from Users u where u.status='PENDING'";
+		TypedQuery<Users> tquery = entityManager.createQuery(query, Users.class);
+		List<Users> list  = tquery.getResultList();
+		return list;
 	}
 
 	@Override
-	public Admin readUserById(int userId) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Users> readUserById(int userId) {
+		String query = "Select u from Users u where u.userId="+userId;
+		TypedQuery<Users> tquery = entityManager.createQuery(query, Users.class);
+		List<Users> list  = tquery.getResultList();
+		
+		return list;
 	}
 
 	@Override
-	public boolean verifyUser(Users user) {
-		// TODO Auto-generated method stub
-		return false;
+	public int verifyUser(int userId) {
+		String jpql = "Update Users u set u.status='VERIFIED' where u.userId="+userId;
+		Query query = entityManager.createQuery(jpql);
+		int result = query.executeUpdate();
+		return result;
 	}
 
 	@Override
 	public boolean activateUser(Users user) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public int rejectUser(int userId) {
+		String jpql = "Update Users u set u.status='REJECTED' where u.userId="+userId;
+		Query query = entityManager.createQuery(jpql);
+		int result = query.executeUpdate();
+		return result;
 	}
 
 }

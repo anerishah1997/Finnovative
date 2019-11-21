@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
@@ -30,6 +31,31 @@ public class LoginDaoImpl implements LoginDao{
 		
 	}
 	
+	public boolean readStatus(String username){
+		String query="Select u from Users u where u.username='"+username+"'";
+		Query tquery = entityManager.createQuery(query);
+		List<Users> list = tquery.getResultList();
+		System.out.println("List: "+list);
+		Users user = list.get(0);
+		String status = user.getStatus();
+		String card = user.getCardType();
+		if(status.equals("VERIFIED"))
+			return true;
+		else
+			return false;
+		
+	}
 	
+	public String checkCard(String username)
+	{
+		String query="Select u from Users u where u.username='"+username+"'";
+		Query tquery = entityManager.createQuery(query);
+		List<Users> list = tquery.getResultList();
+		System.out.println("List: "+list);
+		Users user = list.get(0);
+		String card = user.getCardType();
+		return card;
+		
+	}
 
 }

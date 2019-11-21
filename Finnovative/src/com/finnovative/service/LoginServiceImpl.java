@@ -20,6 +20,15 @@ public class LoginServiceImpl implements LoginService{
 	
 		
 	}
+
+	@Override
+	public boolean checkStatus(String username) {
+		boolean result = loginDao.readStatus(username);
+		if(result)
+			return true;
+		else
+			return false;
+	}
 	
 	
 

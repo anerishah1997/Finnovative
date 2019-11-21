@@ -23,36 +23,20 @@ public class Users {
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="u1")
 	@SequenceGenerator(name="u1",sequenceName="users_se",allocationSize=1)
-	@Column(name="user_id")
 	private int userId;
-	@Column(name="fullName")
 	private String fullName;
-	@Column(name="phone_number")
 	private String mobileNumber;
-	@Column(name="email")
-	private String emailId;
-	@Column(name="username")
+	private String email;
 	private String username;
-	@Column(name="password")
 	private String password;
-	@Column(name="address")
 	private String address;
-	@Column(name="annual_Income")
 	private double annualIncome;
-	@Column(name="card_Type")
 	private String cardType;
-	@Column(name="bank_Name")
 	private String bankName;
-	@Column(name="account_Number")
 	private long accountNumber;
-	@Column(name="ifsc_Code")
 	private String ifscCode;
-	@Column(name="verified")
-	private String verified;
-	@Column(name="approved")
-	private String approved;
-	@Column(name="aadhar_Document")
-	private String aadhaarDoc;
+	private String status;
+	private String aadharDoc;
 	/*@OneToOne(mappedBy="user",cascade=CascadeType.ALL)
 	EmiCard card;
 	@OneToMany(mappedBy="user",cascade=CascadeType.ALL,fetch=FetchType.EAGER)
@@ -73,15 +57,14 @@ public class Users {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	public Users(int userId, String fullName, String mobileNumber, String emailId, String username, String password,
+	public Users(int userId, String fullName, String mobileNumber, String email, String username, String password,
 			String address, double annualIncome, String cardType, String bankName, long accountNumber, String ifscCode,
-			String verified, String approved, String aadhaarDoc) {
+			String status, String aadharDoc) {
 		super();
 		this.userId = userId;
 		this.fullName = fullName;
 		this.mobileNumber = mobileNumber;
-		this.emailId = emailId;
+		this.email = email;
 		this.username = username;
 		this.password = password;
 		this.address = address;
@@ -90,11 +73,9 @@ public class Users {
 		this.bankName = bankName;
 		this.accountNumber = accountNumber;
 		this.ifscCode = ifscCode;
-		this.verified = verified;
-		this.approved = approved;
-		this.aadhaarDoc = aadhaarDoc;
+		this.status = status;
+		this.aadharDoc = aadharDoc;
 	}
-
 	public int getUserId() {
 		return userId;
 	}
@@ -113,11 +94,11 @@ public class Users {
 	public void setMobileNumber(String mobileNumber) {
 		this.mobileNumber = mobileNumber;
 	}
-	public String getEmailId() {
-		return emailId;
+	public String getEmail() {
+		return email;
 	}
-	public void setEmailId(String emailId) {
-		this.emailId = emailId;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	public String getUsername() {
 		return username;
@@ -167,38 +148,31 @@ public class Users {
 	public void setIfscCode(String ifscCode) {
 		this.ifscCode = ifscCode;
 	}
-	public String getAadhaarDoc() {
-		return aadhaarDoc;
+	public String getStatus() {
+		return status;
 	}
-	public void setAadhaarDoc(String aadhaarDoc) {
-		this.aadhaarDoc = aadhaarDoc;
+	public void setStatus(String status) {
+		this.status = status;
 	}
-	
-	
-	public String getVerified() {
-		return verified;
+	public String getAadharDoc() {
+		return aadharDoc;
 	}
-
-	public void setVerified(String verified) {
-		this.verified = verified;
+	public void setAadharDoc(String aadharDoc) {
+		this.aadharDoc = aadharDoc;
 	}
-
-	public String getApproved() {
-		return approved;
-	}
-
-	public void setApproved(String approved) {
-		this.approved = approved;
-	}
-
 	@Override
 	public String toString() {
-		return "Users [userId=" + userId + ", fullName=" + fullName + ", mobileNumber=" + mobileNumber + ", emailId="
-				+ emailId + ", username=" + username + ", password=" + password + ", address=" + address
+		return "Users [userId=" + userId + ", fullName=" + fullName + ", mobileNumber=" + mobileNumber + ", email="
+				+ email + ", username=" + username + ", password=" + password + ", address=" + address
 				+ ", annualIncome=" + annualIncome + ", cardType=" + cardType + ", bankName=" + bankName
-				+ ", accountNumber=" + accountNumber + ", ifscCode=" + ifscCode + ", verified=" + verified
-				+ ", approved=" + approved + ", aadhaarDoc=" + aadhaarDoc + "]";
+				+ ", accountNumber=" + accountNumber + ", ifscCode=" + ifscCode + ", status=" + status + ", aadharDoc="
+				+ aadharDoc + "]";
 	}
+	
+	
+	
+	
+	
 
 	
 	

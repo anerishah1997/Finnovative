@@ -1,0 +1,62 @@
+1) Add the following dependencies in pom.xml file:
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4</version>
+		</dependency>
+
+
+2) Add the following beans in your spring's config file for setting up support for JavaMail API:
+
+<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="smtp.office365.com"/>
+        <property name="port" value="587" />
+        <property name="username" value="XXXXXXXX@lntinfotech.com"/>
+        <property name="password" value="XXXXXXXX"/>
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.transport.protocol">smtp</prop>
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.smtp.starttls.enable">true</prop>
+                <prop key="mail.debug">true</prop>
+                <prop key="mail.smtp.connecttimeout">50000</prop>
+                <prop key="mail.smtp.timeout">30000</prop>
+                <prop key="mail.smtp.writetimeout">50000</prop>
+            </props>
+        </property>
+    </bean>
+    
+    <bean id="preConfiguredMessage" class="org.springframework.mail.SimpleMailMessage">
+        <property name="from" value="XXXXXXXX@lntinfotech.com"></property>
+    </bean>
+
+3) Replace XXXXXXXX in the above configuration with your LTI email id and passwor`d
+
+4) Refer to this code below for a working example:
+
+@Service
+public class SendMailService {
+
+	@Autowired
+	private MailSender mailSender;
+	
+	@Autowired
+	private SimpleMailMessage message;
+	
+	public void send() {
+		message.setTo("abc@gmail.com"); //set a proper recipient of the mail
+		message.setSubject("Test Mail");
+		message.setText("Hi!");
+		mailSender.send(message);
+	}
+}
+
+
+
+

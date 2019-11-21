@@ -1,0 +1,16 @@
+CREATE TABLE Users (userId number(8) primary key,
+fullname varchar2(45) NOT NULL,
+
+mobilenumber number(10) NOT NULL,
+email varchar2(50) NOT NULL,
+username varchar2(20)NOT NULL ,
+password varchar2(25) NOT NULL UNIQUE ,
+address varchar2(60) NOT NULL,
+annualincome number(8,2) NOT NULL, 
+cardtype varchar2(12),
+bankname varchar2(30) NOT NULL,
+accountnumber number(12) UNIQUE ,
+ifsccode varchar2(12),
+aadhardoc varchar2(10),
+
+status varchar2(10) default 'PENDING')

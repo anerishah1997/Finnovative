@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.finnovative.dao.AdminDao;
 import com.finnovative.model.Admin;
@@ -23,27 +24,40 @@ public class AdminServiceimpl implements AdminService{
 	}
 
 	@Override
-	public List<Admin> findAllUsers() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Users> findAllUsers() {
+		return adminDao.readAllUsers();
 	}
 
 	@Override
-	public Admin findUserById(int userId) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Users> findUserById(int userId) {
+		return adminDao.readUserById(userId);
+		
 	}
 
 	@Override
-	public boolean checkUser(Users user) {
-		// TODO Auto-generated method stub
-		return false;
+	@Transactional
+	public boolean checkUser(int userId) {
+		int result = adminDao.verifyUser(userId);
+		if(result == 1)
+			return true;
+		else
+			return false;
 	}
 
 	@Override
 	public boolean approveUser(Users user) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	@Transactional
+	public boolean dismissUser(int userId) {
+		int result = adminDao.rejectUser(userId);
+		if(result == 1)
+			return true;
+		else
+			return false;
 	}
 
 }

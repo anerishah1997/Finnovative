@@ -9,7 +9,7 @@
 </head>
 <body>
 <div class="navbar">
-            <a href="index.jsp"><i class="fa fa-fw fa-home"></i> Home</a>
+            <a href="indexPage"><i class="fa fa-fw fa-home"></i> Home</a>
             <!-- <a href="register.jsp"><i class="fa fa-fw fa-search"></i> Register</a>
             <a href="productlist.jsp"><i class="fa fa-fw fa-envelope"></i> Browse Products</a> -->
             <a href="userlogin.jsp"><i class="fa fa-fw fa-user"></i> Login</a>
