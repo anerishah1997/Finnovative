@@ -29,7 +29,7 @@ public class AdminServiceimpl implements AdminService{
 	}
 
 	@Override
-	public List<Users> findUserById(int userId) {
+	public Users findUserById(int userId) {
 		return adminDao.readUserById(userId);
 		
 	}

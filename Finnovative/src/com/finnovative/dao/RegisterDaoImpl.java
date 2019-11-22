@@ -16,7 +16,7 @@ public class RegisterDaoImpl implements RegisterDao{
 	
 	@Override
 	public int createUser(Users user) {
-        entityManager.persist(user);
+        entityManager.merge(user);
 		return 	1;
 	}
 

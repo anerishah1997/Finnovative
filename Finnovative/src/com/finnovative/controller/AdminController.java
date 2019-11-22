@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.finnovative.model.Users;
 import com.finnovative.service.AdminService;
@@ -44,10 +45,12 @@ public class AdminController {
 	}
 	
 	@RequestMapping(path="viewDetails.do", method=RequestMethod.GET)
-	public String viewDetailsPage(@RequestParam("userId") int userId,Model model){
-		List<Users> userList = adminService.findUserById(userId);
-		model.addAttribute("userList", userList);
-		return "viewUserDetails";
+	public ModelAndView viewDetailsPage(@RequestParam("userId") int userId,Model model){
+		Users user = adminService.findUserById(userId);
+		ModelAndView mav = new ModelAndView("viewUserDetails");
+		mav.addObject("user", user);
+		//model.addAttribute("user", user);
+		return mav;
 	}
 	
 	@RequestMapping(path="verifyUser.do", method=RequestMethod.GET)

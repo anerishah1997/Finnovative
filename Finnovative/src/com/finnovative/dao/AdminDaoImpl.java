@@ -39,12 +39,12 @@ public class AdminDaoImpl implements AdminDao{
 	}
 
 	@Override
-	public List<Users> readUserById(int userId) {
+	public Users readUserById(int userId) {
 		String query = "Select u from Users u where u.userId="+userId;
 		TypedQuery<Users> tquery = entityManager.createQuery(query, Users.class);
-		List<Users> list  = tquery.getResultList();
+		Users user  = tquery.getSingleResult();
 		
-		return list;
+		return user;
 	}
 
 	@Override

@@ -11,7 +11,7 @@
 <body>
 <table border="1" align="center" border="1" style="margin-left:auto;margin-right:auto;margin-top:4%;margin-bottom:0%;height:120; width:80%;" >
         
-        <c:forEach var="user" items="${ requestScope.userList }">
+        <c:if test="${ user != null}">
 			<c:url var="verifyUserUrl" value="verifyUser.do">
 				<c:param name="userId" value="${ user.userId }"/>
 			</c:url>
@@ -20,7 +20,7 @@
 			</c:url>
 			<tr>
 				<td>User Id: </td>
-				<td><c:out value="${ user.userId }"/></td>
+				<td><c:out  value="${ user.userId }"/></td>
 			</tr>
 			
 			<tr>
@@ -86,7 +86,7 @@
 				<td><a href='<c:out value="${ rejectUserUrl }"/>'> Reject   </a> </td>
 				</tr>
 				
-		</c:forEach>
+		</c:if>
         
     </table>
 </body>

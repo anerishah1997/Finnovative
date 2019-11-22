@@ -1,5 +1,7 @@
 package com.finnovative.dao;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -9,6 +11,7 @@ import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 
+import com.finnovative.model.EmiCard;
 import com.finnovative.model.Users;
 
 @Repository
@@ -18,16 +21,13 @@ public class LoginDaoImpl implements LoginDao{
 	EntityManager entityManager;
 
 	@Override
-	public int readLogin(String username, String password) {
+	public Users readLogin(String username, String password) {
 		String query="Select u from Users u where u.username='"+username+"' and u.password='"+password+"'";
-		System.out.println("in dao");
 		TypedQuery<Users> tquery= entityManager.createQuery(query,Users.class);
-		System.out.println(tquery);
 		/*tquery.setParameter("uname", username);
 		tquery.setParameter("pass",password);*/
-		List<Users> list= tquery.getResultList();
-		System.out.println(list.size());
-		return list.size();
+		Users user = tquery.getSingleResult();
+		return user;
 		
 	}
 	
@@ -58,4 +58,41 @@ public class LoginDaoImpl implements LoginDao{
 		
 	}
 
+    public int activateUser(Users user)
+    {
+    	String jpql = "Update Users u set u.status='APPROVED' where u.userId="+user.getUserId();
+    	Query query = entityManager.createQuery(jpql);
+    	int result = query.executeUpdate();
+    	return result;
+    }
+    
+    public int createEmiCard(Users user)
+    {
+    	EmiCard emicard = new EmiCard();
+    	emicard.setCardType(user.getCardType());
+        Calendar calendar = Calendar.getInstance();
+    	emicard.setValidityStart(calendar.getTime());
+    	if(user.getCardType().equals("Gold"))
+    		emicard.setTotalCredit(40000);
+    	else
+    		emicard.setTotalCredit(80000);
+    	calendar.add(Calendar.MONTH, 12);
+    	emicard.setValidityExp(calendar.getTime());
+    	emicard.setRemainingCredit(emicard.getCreditUsed());
+    	emicard.setCreditUsed(0);
+    	//emicard.setUserId(user.getUserId());
+    	emicard.setUser(entityManager.find(Users.class,user.getUserId()));
+    	entityManager.persist(emicard);
+    	return 1;
+    	/**/
+    }
+    
+    public EmiCard readEmiCard(Users user)
+    {
+    	String query = "Select e from EmiCard e INNER JOIN e.user u where u.userId=:userId";
+    	TypedQuery<EmiCard> tquery = entityManager.createQuery(query, EmiCard.class);
+    	tquery.setParameter("userId", user.getUserId());
+    	EmiCard card = tquery.getSingleResult();
+    	return card;
+    }
 }

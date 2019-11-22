@@ -15,7 +15,7 @@
             <!-- <a href="userlogin.html"><i class="fa fa-fw fa-user"></i> Login</a> -->
             <!-- <a style="float:right" href="adminlogin.html"><i class="fa fa-fw fa-user"></i> Admin</a> -->
     </div>
-    <table border="1" align="center" style="margin-left:auto;margin-right:auto;margin-top:4%;margin-bottom:0%">
+    <table  align="center" style="margin-left:auto;margin-right:auto;margin-top:4%;margin-bottom:0%">
         <tr>
         <td>
     <form action="adminlogin.do" method="post">
@@ -23,7 +23,7 @@
         <table align="center">
             <tr>
                 <th>
-                    <h3 align="center">Admin Login</h3>
+                    <h3>Admin Login</h3>
                 </th>
             </tr>
             <tr>

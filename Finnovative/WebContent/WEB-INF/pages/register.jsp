@@ -18,8 +18,7 @@
     
   </div> 
   
-<table  align="center"  style="margin-left:auto;margin-right:auto;margin-top:2%;margin-bottom:0%; border-collapse: collapse;
-border: 2px solid black;">
+<table  align="center"  style="margin-left:auto;margin-right:auto;margin-top:2%;margin-bottom:0%;">
 <tr><td>
         <h2 align="center"><b><i>Registration Page</i></b></h2>  
 <form  action="registerUser.do" method="post" id="reg" name="name">
@@ -27,7 +26,7 @@ border: 2px solid black;">
 <table align="center" >
     <tr>
         
-        <td><label>Full Name:</label></td>
+        <td>Full Name:</td>
         <td><input type ="text" name="fullName" id="fullName" placeholder="Enter name" required/></td>
         <td id="fullNameError"></td> 
     </tr>

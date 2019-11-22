@@ -37,6 +37,10 @@ public class Users {
 	private String ifscCode;
 	private String status;
 	private String aadharDoc;
+	
+	@OneToOne(mappedBy="user")
+	private EmiCard emicard;
+	
 	/*@OneToOne(mappedBy="user",cascade=CascadeType.ALL)
 	EmiCard card;
 	@OneToMany(mappedBy="user",cascade=CascadeType.ALL,fetch=FetchType.EAGER)

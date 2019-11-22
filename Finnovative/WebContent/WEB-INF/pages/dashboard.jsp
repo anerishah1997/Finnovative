@@ -10,7 +10,7 @@
 </head>
 <body>
 <body><h1><b><i>FINNOVATIVE</i></b></h1>
-    <div class="navbar">
+    <div >
             <a href="indexPage"><i class="fa fa-fw fa-home"></i> Home</a>
             <!-- <a href="register.html"><i class="fa fa-fw fa-search"></i> Register</a> -->
             <a href="productlist.jsp"><i class="fa fa-fw fa-envelope"></i> Browse Products</a>
@@ -18,32 +18,34 @@
             <a style="float:right" href="index.html"><i class="fa fa-fw fa-user"></i>Log out</a>
           </div>
 
-          <div class="Details" >
+          <div  >
                 <table style="margin-left:auto;margin-right:auto;margin-top:4%;margin-bottom:0%; 
                                 border-style:solid">
                     <tr>
                         <td>
-                        <p class="cardNumber">Card Number:</p>
+                        <p class="cardNumber">Card Number:<input type="text" name="cardNumber" value="${emicard.cardNumber}"></p>
                         <p></p>
-                        
                         </td>
                     </tr>
                     <tr>
-                        <td>
-                        <p class="name">Name:</p>
-                        <p></p>
+                       <%--  <td>
+                        <p class="name" >Name:<input type="text" name="name" value="${emicard.cardNumber}"></p>
+                        <p></p> --%>
                        
                     </tr>
                     <tr>
                         <td>
-                        <p class="validTill">Valid Till:</p>
-                        <p></p>
+                        <p class="validTill">Valid Till:
+  						<input type="text" name="validity" value="${emicard.validityExp}"></p>
+                     
                         </td>
                     </tr>
                     <tr>
                         <td>
-                        <p class="cardType">Card Type</p>
-                        <p></p>
+                        <p class="cardType">Card Type
+                      <input type="text" name="validity" value="${emicard.cardType}"></p>
+
+                 
                         </td>
                     </tr>
 
