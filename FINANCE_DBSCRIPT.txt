@@ -1,0 +1,150 @@
+
+//EMI USER
+
+create table users(
+
+CREATE TABLE Users (userId number(8) primary key,
+fullname varchar2(45) NOT NULL,
+transactionId number(10),
+mobilenumber number(10) NOT NULL,
+email varchar2(50) NOT NULL,
+username varchar2(20)NOT NULL ,
+password varchar2(25) NOT NULL UNIQUE ,
+address varchar2(60) NOT NULL,
+annualincome number(8,2) NOT NULL, 
+cardtype varchar2(12),
+bankname varchar2(30) NOT NULL,
+accountnumber number(12) UNIQUE ,
+ifsccode varchar2(12),
+aadhardoc varchar2(10),
+paymentid number(10),
+cardnumber number(10))
+status varchar2(10) default 'PENDING'
+,
+FOREIGN KEY (paymentid)
+  REFERENCES monthlylimitpay(paymentid),
+,
+FOREIGN KEY (cardnumber)
+  REFERENCES Emicard(cardnumber),
+
+FOREIGN KEY(transactionid) REFERENCES 
+transaction(transactionid)
+
+);
+
+
+//ADMIN
+
+create table admin(
+username varchar2(20) Primary Key,
+password varchar2(20)
+)
+
+//EMI PLAN
+
+CREATE TABLE Emiplan 
+(emino NUMBER(10) Primary Key,
+transactionId number(10)
+startdate date,
+enddate date,
+noofmonths number,
+installmentid number(10),
+emistatus varchar2(10),
+emiamount number(10,3),
+FOREIGN KEY(installmentid) REFERENCES 
+installment(installmentid),
+FOREIGN KEY(transactionid) REFERENCES 
+transaction(transactionid) // change in db
+
+)
+//PRODUCTS
+create table product
+(
+productid number(5) Primary Key,
+productname varchar2(40) NOT NULL,
+productdetails varchar2(100),
+productprice number(10,3) NOT NULL,
+productimage varchar2(100),
+transactionid number(10),
+FOREIGN KEY(transactionid) REFERENCES 
+transaction(transactionid)
+)
+//forei(transaction)
+
+
+
+//EMI CARD
+
+create table emicard(
+cardnumber number(16) primary key,
+cardtype varchar2(10),
+validity_start date,
+validityexp date,
+cardstatus varchar2(20) default 'DEACTIVATED',
+totalcredit number(8,2) NOT NULL,
+creditused number(8,2),
+remainingcredit number(8,2),
+userid number(10),
+FOREIGN KEY(userid) REFERENCES 
+Users(userid),
+paymentid number(10),
+FOREIGN KEY (paymentid)
+  REFERENCES monthlylimitpay(paymentid));
+
+
+
+
+
+ALTER TABLE emicard
+ADD CONSTRAINT emipln2
+  FOREIGN KEY (paymentid)
+  REFERENCES monthlylimitpay(paymentid);
+
+
+//installment
+
+CREATE TABLE installment (installmentid number(10) Primary Key,
+installmentno number(10),
+datepaid date,
+duedate date,
+installmentstatus varchar2(10),
+emino number(10),
+FOREIGN KEY(emino) REFERENCES 
+Emiplan(emino)
+)
+//transaction
+
+create table Transaction
+(transactionid number(10) primary key,
+quantity number(30),emino number(10),productid number(10),
+userid number(10),
+FOREIGN KEY(emino) REFERENCES Emiplan(emino),
+FOREIGN KEY(productid) REFERENCES Product(productid),
+FOREIGN KEY(userid) REFERENCES Users(userid))
+
+//monthly_payment
+
+ create table monthlylimitpay(
+  paymentid number(10) primary key,
+  amounttobepaid number(10,3),
+  duedate date,
+  userid number(10),
+  cardnumber number(10),
+  status varchar2(10) default 'PENDING',
+  FOREIGN KEY(userid) REFERENCES Users(userid),
+  FOREIGN KEY(CARDNUMBER) REFERENCES EMICARD(CARDNUMBER));
+
+
+INSERT INTO PRODUCT(productname,productdetails,productprice,productimage)
+VALUES ('oneplus','good',30000, utl_raw.cast_to_raw('C:\Users\AW204_PC11\Desktop\op7.jpg'));
+
+
+CREATE SEQUENCE product_seq
+ START WITH     100
+ INCREMENT BY   1
+ NOCACHE
+ NOCYCLE;
+
+
+
+
