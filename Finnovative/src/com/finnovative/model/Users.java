@@ -41,6 +41,15 @@ public class Users {
 	@OneToOne(mappedBy="user")
 	private EmiCard emicard;
 	
+	
+	
+	
+	public EmiCard getEmicard() {
+		return emicard;
+	}
+	public void setEmicard(EmiCard emicard) {
+		this.emicard = emicard;
+	}
 	/*@OneToOne(mappedBy="user",cascade=CascadeType.ALL)
 	EmiCard card;
 	@OneToMany(mappedBy="user",cascade=CascadeType.ALL,fetch=FetchType.EAGER)

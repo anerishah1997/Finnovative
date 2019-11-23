@@ -81,7 +81,10 @@ public class LoginDaoImpl implements LoginDao{
     	emicard.setRemainingCredit(emicard.getCreditUsed());
     	emicard.setCreditUsed(0);
     	//emicard.setUserId(user.getUserId());
-    	emicard.setUser(entityManager.find(Users.class,user.getUserId()));
+    	Users user1 = entityManager.find(Users.class,user.getUserId());
+    	emicard.setUser(user1);
+    	//user1.setEmicard(emicard);
+    	
     	entityManager.persist(emicard);
     	return 1;
     	/**/
@@ -93,6 +96,13 @@ public class LoginDaoImpl implements LoginDao{
     	TypedQuery<EmiCard> tquery = entityManager.createQuery(query, EmiCard.class);
     	tquery.setParameter("userId", user.getUserId());
     	EmiCard card = tquery.getSingleResult();
+    	/*long cardno = card.getCardNumber(); 
+    	String query2 = "Update Users u set u.cardnumber="+cardno+" where u.userId="+user.getUserId();
+    	Query tquery2 = entityManager.createQuery(query2);*/
+    	
+    	
     	return card;
     }
+    
+   /* public String readCardName(Users user)*/
 }

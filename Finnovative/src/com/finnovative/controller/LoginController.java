@@ -1,5 +1,7 @@
  package com.finnovative.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -107,5 +109,21 @@ public class LoginController {
 			 ModelAndView mav = new ModelAndView("Error");
 			 return mav;
 		 }
+	 }
+	 @RequestMapping(path="logOut.do",method=RequestMethod.GET)
+	 public String invalidateSession(HttpServletRequest request, ModelMap model){
+		 request.removeAttribute("users");
+		 request.getSession().invalidate();
+		 return "index";
+		 
+	 }
+	 
+	 @RequestMapping(path="viewProduct.do",method=RequestMethod.GET)
+	 public String checkUserSession(ModelMap model){
+		 if(model.get("users")==null)		 
+			 return "userlogin";
+		 else
+			 return "productlist";
+			 
 	 }
 }

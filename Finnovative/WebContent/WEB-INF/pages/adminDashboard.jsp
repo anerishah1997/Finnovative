@@ -9,7 +9,10 @@
 </head>
 <body>
 
-In Admin Dashboard
+ <div >
+            <a href="indexPage"><i class="fa fa-fw fa-home"></i> View All Users</a>
+            <a style="float:right" href="logOut.do"><i class="fa fa-fw fa-user"></i>Log out</a>
+          </div>
 <table border="1" align="center" border="1" style="margin-left:auto;margin-right:auto;margin-top:4%;margin-bottom:0%;height:120; width:80%;" >
         <tr>
             <th>Name</th>

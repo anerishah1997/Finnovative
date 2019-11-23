@@ -34,7 +34,7 @@
             </tr>
              <tr>
                  <td><a href="">forgot password?</a></td>
-                 <td><a href="">New User? Register here!</a></td>
+                 <td><a href="registerPage">New User? Register here!</a></td>
              </tr>
         </table>
     </form>

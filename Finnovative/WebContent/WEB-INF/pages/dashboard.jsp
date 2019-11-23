@@ -13,9 +13,9 @@
     <div >
             <a href="indexPage"><i class="fa fa-fw fa-home"></i> Home</a>
             <!-- <a href="register.html"><i class="fa fa-fw fa-search"></i> Register</a> -->
-            <a href="productlist.jsp"><i class="fa fa-fw fa-envelope"></i> Browse Products</a>
+            <a href="ProductListPage"><i class="fa fa-fw fa-envelope"></i> Browse Products</a>
             <!-- <a href="userlogin.html"><i class="fa fa-fw fa-user"></i> Login</a> -->
-            <a style="float:right" href="index.html"><i class="fa fa-fw fa-user"></i>Log out</a>
+            <a style="float:right" href="logOut.do"><i class="fa fa-fw fa-user"></i>Log out</a>
           </div>
 
           <div  >
@@ -28,9 +28,9 @@
                         </td>
                     </tr>
                     <tr>
-                       <%--  <td>
-                        <p class="name" >Name:<input type="text" name="name" value="${emicard.cardNumber}"></p>
-                        <p></p> --%>
+                       <td>
+                        <p class="name" >Name:<input type="text" name="name" value="${emicard.user.fullName}"></p>
+                        <p></p>
                        
                     </tr>
                     <tr>
