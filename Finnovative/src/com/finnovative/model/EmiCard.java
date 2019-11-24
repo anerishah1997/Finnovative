@@ -20,7 +20,7 @@ import org.springframework.stereotype.Component;
 public class EmiCard {
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="cardNo_seq")
-	@SequenceGenerator(name="cardNo_seq", sequenceName="emiCardNo_seq",allocationSize=400000000)
+	@SequenceGenerator(name="cardNo_seq", sequenceName="emiCardNo_seq",allocationSize=1000)
 	private long cardNumber;
 	private String cardType;
 	private Date validityStart;

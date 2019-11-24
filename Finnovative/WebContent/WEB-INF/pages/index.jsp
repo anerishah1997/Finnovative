@@ -22,7 +22,7 @@
             <a href="userloginPage"><i class="fa fa-fw fa-user"></i> Login</a>
             <a style="float:right" href="adminLoginPage"><i class="fa fa-fw fa-user"></i> Admin</a>
           </div>
-    <form action="viewProduct.do" method="get" id="index">
+    <form action="userloginPage" method="get" id="index">
         <h2 style="color:dimgrey"><i>Welcome to Finnovative Financial Services. We have with us a list of products 
                          with attractive emi offers.</i></h2>
         <!-- Slideshow container -->

@@ -41,6 +41,9 @@ public class Users {
 	@OneToOne(mappedBy="user")
 	private EmiCard emicard;
 	
+	@OneToMany(mappedBy="user")
+	private Set<EmiPlan> emiplans;
+	
 	
 	
 	

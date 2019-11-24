@@ -3,6 +3,7 @@ package com.finnovative.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.codec.multipart.Part;
@@ -35,8 +36,10 @@ public String viewProduct(Model model){
 }
 	
 @RequestMapping(path="buyProduct.do", method=RequestMethod.GET)
-public ModelAndView viewDetailsPage(@RequestParam("productId") int productId,Model model){
+public ModelAndView viewDetailsPage(@RequestParam("productId") int productId,Model model, HttpServletRequest request){
 	Product product = service.findProductById(productId);
+	HttpSession session = request.getSession();
+	session.setAttribute("product", product);
 	ModelAndView mav = new ModelAndView("buyProducts");
 	mav.addObject("product", product);
 	

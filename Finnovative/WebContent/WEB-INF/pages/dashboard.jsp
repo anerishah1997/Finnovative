@@ -23,27 +23,27 @@
                                 border-style:solid">
                     <tr>
                         <td>
-                        <p class="cardNumber">Card Number:<input type="text" name="cardNumber" value="${emicard.cardNumber}"></p>
+                        <p class="cardNumber">Card Number:<input type="text" name="cardNumber" value="${emicard.cardNumber}" readonly="readonly"></p>
                         <p></p>
                         </td>
                     </tr>
                     <tr>
                        <td>
-                        <p class="name" >Name:<input type="text" name="name" value="${emicard.user.fullName}"></p>
+                        <p class="name" >Name:<input type="text" name="name" value="${emicard.user.fullName}" readonly="readonly"></p>
                         <p></p>
                        
                     </tr>
                     <tr>
                         <td>
                         <p class="validTill">Valid Till:
-  						<input type="text" name="validity" value="${emicard.validityExp}"></p>
+  						<input type="text" name="validity" value="${emicard.validityExp}" readonly="readonly"></p>
                      
                         </td>
                     </tr>
                     <tr>
                         <td>
                         <p class="cardType">Card Type
-                      <input type="text" name="validity" value="${emicard.cardType}"></p>
+                      <input type="text" name="validity" value="${emicard.cardType}" readonly="readonly"></p>
 
                  
                         </td>

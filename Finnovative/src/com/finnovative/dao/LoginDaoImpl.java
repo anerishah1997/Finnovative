@@ -78,7 +78,7 @@ public class LoginDaoImpl implements LoginDao{
     		emicard.setTotalCredit(80000);
     	calendar.add(Calendar.MONTH, 12);
     	emicard.setValidityExp(calendar.getTime());
-    	emicard.setRemainingCredit(emicard.getCreditUsed());
+    	emicard.setRemainingCredit(emicard.getTotalCredit());
     	emicard.setCreditUsed(0);
     	//emicard.setUserId(user.getUserId());
     	Users user1 = entityManager.find(Users.class,user.getUserId());

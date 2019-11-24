@@ -15,32 +15,39 @@
             <a href="userlogin.html"><i class="fa fa-fw fa-user"></i> Login</a>
           
           </div>
-<form action="buyProduct.do" method="GET" enctype="multipart/form-data">
- 	  <table>
+<c:choose>  
+     
+  <c:when test="${sessionScope.user != null }">    
+	 <form action="buyProduct.do" method="GET" enctype="multipart/form-data">
+	 	<table>
 
- <c:forEach var="prod" items="${ requestScope.productList }">
- 	    <tr>
-			<td rowspan="4"> <img src ="images/${ prod.productImage }" id="img" style="width:15em; height:15em;" ></td>
-		</tr>	
-		<tr>
-			<td><h3><c:out value="${ prod.productName }"/></h3></td>
-		</tr>	
-		<tr>
-			<td><c:out value="${ prod.productDetails }"/></td>
-		</tr>
-		<tr>
-			<td><h3>Rs. <c:out value="${ prod.productPrice }"/></h3></td>
-		</tr>
-		<tr>
-		    <td> <p><button type="submit" name="productId" value=${prod.productId} >BUY NOW</button></p></td>
-		</tr>
-			
-		</c:forEach>
-		
+		 <c:forEach var="prod" items="${ requestScope.productList }">
+		 	    <tr>
+					<td rowspan="4"> <img src ="images/${ prod.productImage }" id="img" style="width:15em; height:15em;" ></td>
+				</tr>	
+				<tr>
+					<td><h3><c:out value="${ prod.productName }"/></h3></td>
+				</tr>	
+				<tr>
+					<td><c:out value="${ prod.productDetails }"/></td>
+				</tr>
+				<tr>
+					<td><h3>Rs. <c:out value="${ prod.productPrice }"/></h3></td>
+				</tr>
+				<tr>
+				    <td> <p><button type="submit" name="productId" value=${prod.productId} >BUY NOW</button></p></td>
+				</tr>
+					
+		  </c:forEach>
+				
 		</table> 
 	
-	</form>
-
+	  </form>
+	</c:when>  
+    <c:otherwise>
+       <c:redirect url="userloginPage"></c:redirect>
+    </c:otherwise>
+</c:choose>
 		
 	
 

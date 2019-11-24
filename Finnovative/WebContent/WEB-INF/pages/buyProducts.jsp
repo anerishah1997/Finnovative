@@ -8,6 +8,7 @@
 <title>Product details</title>
  <link rel="stylesheet" href="css/nav.css">
  <script type="text/javascript" src="js/buyProducts.js"></script>
+ 
 </head>
 <body>
 <form action="pay.do" method="post">
@@ -18,15 +19,15 @@
 			<td rowspan="4"> <img src ="images/${ product.productImage }" id="img" style="width:15em; height:15em;" ></td>
 			</tr>
 			<tr>	
-			<input type="hidden" id="price" name="x" value="${ product.productPrice }"> 
+			 
 				<td><h3><c:out value="${ product.productName }"/></h3></td>
 			</tr>
 			<tr>	
 				<td><c:out value="${ product.productDetails }"/></td>
 				</tr>
 				<tr>
+				<input type="hidden" id="price" name="x" value="${ product.productPrice }">
 				<td><h3>Rs. <c:out value="${ product.productPrice }"/></h3></td>
-				<c:set value="${ product.productPrice }" var="prodPrice"></c:set>
 				</tr>
 				<tr>
 				
@@ -43,25 +44,14 @@
 				    </td>
 			    </tr >
 			    <tr>
-			    	<td colspan="2">Your Calculated EMI is: <div id="calculatedEMI"></div></td>
+			    	<td colspan="2">Your Calculated EMI is:<input type="text" id="calculatedEMI" name="calculatedEMI" ></td>
 			    </tr>
 			    
 			    <tr>
 			    <td colspan="2"><input type="submit" value="Pay Now" width="30%">
 			    </td>
 			    </tr>
-			    <%-- <tr>
-			       <c:url var="selectMonthUrl" value="calculateEMI.do">
-			           <c:param name="noOfMonths" value="${ noOfMonths }"></c:param>
-			           <c:param name="prodPrice" value="${ product.productPrice }"></c:param>
-			       </c:url>
-			       <td><a href='<c:out value="${selectMonthUrl} }"></c:out>'>CalculateEMI</a></td>
-			    </tr>
-			    <c:if test="${calculatedEMI != null }">
-				    <tr>
-				    	<td>Your calculated Emi is: <label value="${calculatedEMI }"></label></td>
-				    </tr>
-			    </c:if> --%>
+			   
     </table> 
 
 

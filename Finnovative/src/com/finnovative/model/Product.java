@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 import org.springframework.stereotype.Component;
@@ -24,6 +25,9 @@ public class Product {
 	private double productPrice;
 
 	private String productImage;
+	
+	@OneToOne(mappedBy="product")
+	private EmiPlan emiplan;
 
 	/*private int transactionId;//fk
 	@OneToMany(mappedBy="product",cascade=CascadeType.ALL)
