@@ -6,8 +6,8 @@ import com.finnovative.model.Users;
 
 public interface InstallmentService {
 	
-	public boolean insertEMIPlan(Users user, Product product, double installmentAmt, int noOfMonths);
-	public EmiPlan fetchEMIPlan(Users user);
-	public boolean insertInstallment(EmiPlan emiplan);
+	public int insertEMIPlan(Users user, Product product, double installmentAmt, int noOfMonths);
+	public EmiPlan fetchEMIPlan(int emino);
+	public boolean insertInstallment(EmiPlan emiplan,int i);
 	
 }

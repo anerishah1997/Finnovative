@@ -1,15 +1,17 @@
 package com.finnovative.controller;
 
-import java.io.BufferedOutputStream;
+
 import java.io.File;
-import java.io.FileOutputStream;
+
+import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import com.finnovative.model.Users;
@@ -32,7 +34,22 @@ public class RegisterController {
 	public String registerUser(@RequestParam("fullName")String fullname,@RequestParam("PhoneNo")String phoneno,@RequestParam("Email")String email,
 			                   @RequestParam("Username")String username,@RequestParam("Password")String password,@RequestParam("Address")String address,
 			                   @RequestParam("income")double income,@RequestParam("Card")String cardtype,@RequestParam("Bank")String bank,
-			                   @RequestParam("AccountNumber")int accno,@RequestParam("IFSCcode")String ifsc){
+			                   @RequestParam("AccountNumber")int accno,@RequestParam("IFSCcode")String ifsc,@RequestParam("aadhar") MultipartFile aadharDoc){
+		
+		String path="D:/KYCDocsUsers/";
+		String docpath= path+aadharDoc.getOriginalFilename();
+		String dbpath= aadharDoc.getOriginalFilename();
+		
+		try{
+			aadharDoc.transferTo(new File(docpath));
+			
+		}
+		catch(IOException e)
+		{
+			System.out.println("failed to upload file"+e);
+		}
+		
+		
 		user.setFullName(fullname);
 		user.setMobileNumber(phoneno);
 		user.setEmail(email);
@@ -44,7 +61,7 @@ public class RegisterController {
 		user.setBankName(bank);
 		user.setAccountNumber(accno);
 		user.setIfscCode(ifsc);
-		user.setAadharDoc(null);
+		user.setAadharDoc(dbpath);
 		user.setStatus("PENDING");
 		int result = service.addUser(user);
 		if(result==1)
@@ -53,9 +70,14 @@ public class RegisterController {
 			return "register";
 	}
 	
+	@ExceptionHandler({Exception.class})
+	public String handleException() {
+		return "Error";
+	    
 	
+}
 	
-	@RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
+	/*@RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
 	public @ResponseBody
 	String uploadFileHandler(@RequestParam("name") String name, @RequestParam("file") MultipartFile file) {
 		if (!file.isEmpty()) {
@@ -77,14 +99,14 @@ public class RegisterController {
 				stream.close();
 
 				return docPath;
-				/*return "You successfully uploaded file=" + name;*/
+				return "You successfully uploaded file=" + name;
 			} catch (Exception e) {
 				return "You failed to upload " + name + " => " + e.getMessage();
 			}
 		} else {
 			return "You failed to upload " + name + " because the file was empty.";
 		}
-	}
+	}*/
 	
 	
 	

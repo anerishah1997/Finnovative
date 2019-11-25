@@ -1,9 +1,13 @@
 package com.finnovative.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
@@ -26,8 +30,8 @@ public class Product {
 
 	private String productImage;
 	
-	@OneToOne(mappedBy="product")
-	private EmiPlan emiplan;
+	@OneToMany(mappedBy="product")
+	private Set<EmiPlan> emiplan=new HashSet<>();
 
 	/*private int transactionId;//fk
 	@OneToMany(mappedBy="product",cascade=CascadeType.ALL)

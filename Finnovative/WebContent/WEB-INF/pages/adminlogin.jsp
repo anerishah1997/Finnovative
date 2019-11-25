@@ -4,45 +4,51 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
- <link rel="stylesheet" href="css/nav.css">
-<title>Insert title here</title>
+  <link rel="stylesheet" href="css/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+    <script src="js/adminLogin.js"></script>
+    <title>Admin Login</title>
 </head>
 <body>
+<div class="full-height" id="grad1">
+    <header>
+        <div>
+        <img src="images/logo.png" alt="logo" width="8%">
+        </div>
  <div class="navbar">
-            <a href="indexPage"><i class="fa fa-fw fa-home"></i> Home</a>
-            <!-- <a href="register.html"><i class="fa fa-fw fa-search"></i> Register</a> -->
-            <!-- <a href="productlist.html"><i class="fa fa-fw fa-envelope"></i> Browse Products</a> -->
-            <!-- <a href="userlogin.html"><i class="fa fa-fw fa-user"></i> Login</a> -->
-            <!-- <a style="float:right" href="adminlogin.html"><i class="fa fa-fw fa-user"></i> Admin</a> -->
+            <a href="indexPage"> Home</a>
+          
     </div>
-    <table  align="center" style="margin-left:auto;margin-right:auto;margin-top:4%;margin-bottom:0%">
-        <tr>
-        <td>
+     </header>
+          <h2 align="center"><b><i>ADMIN LOGIN</i></b></h2>
     <form action="adminlogin.do" method="post">
        
         <table align="center">
-            <tr>
-                <th>
-                    <h3>Admin Login</h3>
-                </th>
-            </tr>
+           
             <tr>
                 
                 <td><label>Username</label></td>
-                <td><input type ="text" name="adminLogin"/></td>
+                <td><input type ="text" name="adminLogin" id="username" placeholder="Enter username"/></td>
+            </tr>
+             <tr colspan="2">
+            <td></td><td style="text-align: right; color:red; font-style:italic" id="userNameError"></td> 
             </tr>
             <tr>
                 <td><label>Password</label></td>
-                <td><input type="password" name="adminPassword"></td>
+                <td><input type="password" name="adminPassword" id="password" placeholder="Enter password"></td>
+            </tr>
+            <tr colspan="2">
+            <td></td><td style="text-align: right; color:red; font-style:italic" id="passwordError"></td> 
             </tr>
             <tr>
-            <td align="center" colspan="2"><input type="submit" value="Login"/></td></tr>
+            <td align="center" colspan="2"><input type="submit" value="Login" onclick="validate()"/></td></tr>
             </tr>
         </table>
     </form>
-
-</td>
-</tr>
-</table>
+<footer class="footer1" > 
+            <p align="center">©Copyright Finnovative Financial Services</p>
+        </footer> 
+    </body>
+</div>
 </body>
 </html>

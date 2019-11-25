@@ -5,7 +5,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/cards.css">
+   <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
   
 <title>Finnovative Finance Services</title>
 </head>
@@ -14,18 +15,44 @@
 
 </style>
 <body>
-<h1><b><i>FINNOVATIVE</i></b></h1>
+ <div class="full-height" id="grad1">
+<header>
+<div><img src="images/logo.png" alt="logo" width="8%"></div>
     <div class="navbar">
-            <a href="indexPage"><i class="fa fa-fw fa-home"></i> Home</a>
-            <a href="registerPage"><i class="fa fa-fw fa-search"></i> Register</a>
-            <a href="ProductListPage"><i class="fa fa-fw fa-envelope"></i> Browse Products</a>
-            <a href="userloginPage"><i class="fa fa-fw fa-user"></i> Login</a>
-            <a style="float:right" href="adminLoginPage"><i class="fa fa-fw fa-user"></i> Admin</a>
+            <a href="indexPage"> Home</a>
+            <a href="registerPage"> Register</a>
+            <a href="ProductListPage"> Browse Products</a>
+            <a href="userloginPage"></i> Login</a>
+            <a style="float:right" href="adminLoginPage"> Admin</a>
           </div>
+          </header>
+          <div><marquee style="color:#2D4B73;" direction="left"><h3>No cost EMI is available on wide range of products from Apple, OnePlus and Samsung.</h3></marquee></div>
+  <p class="welcomePara">Welcome to Finnovative Financial Service.Finnovative financial service is an Indian financial service 
+      established in 2001.Headquatered in Mumbai ,the company have 6 branches consumer across India. Finnovative
+      Financial Service is expetise in EMI service in which cousumer is provided with four types of EMI option
+      as 3 months, 6 months, 9 months, 12 months with ZERO INTEREST RATE
+  </p>
     <form action="userloginPage" method="get" id="index">
-        <h2 style="color:dimgrey"><i>Welcome to Finnovative Financial Services. We have with us a list of products 
-                         with attractive emi offers.</i></h2>
-        <!-- Slideshow container -->
+     <div class="row" >
+       <c:forEach var="prod" items="${ requestScope.productList }">
+       
+        <div class="column">
+          <div class="product">
+        
+            <img src="images/${ prod.productImage }" alt="img" style="width:100%">
+            <p><c:out value="${ prod.productName }"/></p>
+            <p><b><c:out value="${ prod.productDetails }"/></b></p>
+            <p><b><c:out value="${ prod.productPrice }"/></b></p>
+            
+            <button type="submit" name="productId" class="button">BUY NOW</button>
+           </div>
+        </div>
+        
+            </c:forEach>
+            </div>
+          
+      
+       <%--  <!-- Slideshow container -->
     	 <div class="row">
  		 <div class="column">
 			<div class="card">
@@ -48,22 +75,15 @@
 			
 		</c:forEach>
 			
-		 	 <!-- <img src="images/onePlus7.jpg" alt="op7" style="width:100%">
-		 	 <h1>OnePlus 7</h1>
-		 	 <p class="price">Rs.33000/-</p>
-		 	 <p><button>BUY NOW</button></p> -->
 		</div>
 		</div>
-		 <!-- <div class="column">
-      	<div class="card">
-			  <img src="images/onePlus5.jpg" alt="op5" style="width:100%">
-			  <h1>OnePlus 5</h1>
-			  <p class="price">Rs.35000/-</p>	 
-			  <p><button>BUY NOW</button></p>
-			</div>
-			</div> -->
-			</div>
+	
+			</div> --%>
     </form>
-
+    <footer class="footer" style="margin-top:2%; padding-top:5%;padding-bottom:5%"> 
+            <p align="center">©Copyright Finnovative Financial Services</p>
+          </footer>
+</div>
+ 
 </body>
 </html>

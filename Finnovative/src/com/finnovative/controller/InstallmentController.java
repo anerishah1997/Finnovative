@@ -28,11 +28,15 @@ public class InstallmentController {
 		session = request.getSession();
 		Users user = (Users) session.getAttribute("user");
 		Product product = (Product) session.getAttribute("product");
-		boolean result = installmentService.insertEMIPlan(user, product, installmentAmount, noOfMonths);
-		EmiPlan emiplan= installmentService.fetchEMIPlan(user);
-		
-		if(result)
-			return "Installments";
+		int result = installmentService.insertEMIPlan(user, product, installmentAmount, noOfMonths);
+		EmiPlan emiplan= installmentService.fetchEMIPlan(result);
+		boolean addinstallment = false;
+		for(int i=1; i<=emiplan.getNoOfMonths(); i++)
+		{
+		   addinstallment=installmentService.insertInstallment(emiplan,i);
+		}
+		if(addinstallment)
+			return "dashboard";
 		else
 			return "Error";
 	}

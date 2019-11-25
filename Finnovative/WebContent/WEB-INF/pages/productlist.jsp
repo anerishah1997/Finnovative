@@ -5,24 +5,49 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-  <link rel="stylesheet" href="css/navimg.css">
+ <link rel="stylesheet" href="css/cards.css">
 <title>Products</title>
 </head>
 <body>
+<div class="full-height" id="grad1">
+<section>
+    <div>
+    <img src="images/logo.png" alt="logo" width="8%">
+    </div>
   <div class="navbar">
-            <a href="index.html"><i class="fa fa-fw fa-home"></i> Home</a>
-            <a href="register.html"><i class="fa fa-fw fa-search"></i> Register</a>
-            <a href="userlogin.html"><i class="fa fa-fw fa-user"></i> Login</a>
+            <a href="indexPage">Home</a>
+            <a href="registerPage">Register</a>
+            <!-- <a href="userloginPage">Login</a> -->
           
           </div>
+          </section>
+          
 <c:choose>  
      
   <c:when test="${sessionScope.user != null }">    
-	 <form action="buyProduct.do" method="GET" enctype="multipart/form-data">
-	 	<table>
-
+	 
+	 	
+		<form action="buyProduct.do" method="GET" enctype="multipart/form-data">
 		 <c:forEach var="prod" items="${ requestScope.productList }">
-		 	    <tr>
+		 	   
+		 	   
+		 	   <div align="center">  
+        <div class="row" >
+          <div class="column">
+            <div class="card">
+              <img src="images/${ prod.productImage }" alt="OnePlus3" style="width:100%">
+             
+              <p class="title"><c:out value="${ prod.productName }"/></p>
+              <p><b><c:out value="${ prod.productDetails }"/></b></p>
+              <p><c:out value="${ prod.productPrice }"/></p>
+              <button type="submit" name="productId" value=${prod.productId} >BUY NOW</button>
+              <!-- <input type="button" onclick="" name="Buy Now" class="button" value="Buy Now"> -->
+            </div>
+          </div>
+          </div>
+          </div>
+		 	   
+		 	   <%--  <tr>
 					<td rowspan="4"> <img src ="images/${ prod.productImage }" id="img" style="width:15em; height:15em;" ></td>
 				</tr>	
 				<tr>
@@ -36,11 +61,11 @@
 				</tr>
 				<tr>
 				    <td> <p><button type="submit" name="productId" value=${prod.productId} >BUY NOW</button></p></td>
-				</tr>
+				</tr> --%>
 					
 		  </c:forEach>
 				
-		</table> 
+		
 	
 	  </form>
 	</c:when>  
@@ -51,7 +76,10 @@
 		
 	
 
-    
+ <footer class="footer" style="margin-top:2%"> 
+        <p align="center">©Copyright Finnovative Financial Services</p>
+    </footer>     
+</div>
 
 </body>
 </html>

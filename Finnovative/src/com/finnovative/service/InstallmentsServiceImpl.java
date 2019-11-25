@@ -17,25 +17,26 @@ public class InstallmentsServiceImpl implements InstallmentService{
 	
 	@Override
 	@Transactional
-	public boolean insertEMIPlan(Users user, Product product, double installmentAmt, int noOfMonths) {
-		int result = installmentDao.createEMIPlan(user, product, installmentAmt, noOfMonths);
-		if(result == 1)
-			return true;
-		else
-			return false;
+	public int insertEMIPlan(Users user, Product product, double installmentAmt, int noOfMonths) {
+		return installmentDao.createEMIPlan(user, product, installmentAmt, noOfMonths);
 	}
 
 	@Override
-	public EmiPlan fetchEMIPlan(Users user) {
+	public EmiPlan fetchEMIPlan(int emino) {
 		
-		return installmentDao.getEMIPlan(user);
+		return installmentDao.getEMIPlan(emino);
 		
 	}
 
 	@Override
-	public boolean insertInstallment(EmiPlan emiplan) {
-		
-		return false;
+	@Transactional
+	public boolean insertInstallment(EmiPlan emiplan, int i){
+			
+	    int res = installmentDao.createInstallment(emiplan,i);
+	    if(res==1)
+	    	return true;
+	    else
+	    	return false;
 	}
 
 }

@@ -1,5 +1,6 @@
 package com.finnovative.model;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -10,21 +11,26 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Entity
 @Component
+@Scope(value="prototype")
 public class Installment {
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator= "installment_seq")
-	@SequenceGenerator(name="installment_seq", sequenceName="installment_seq",allocationSize=1000)
+	@SequenceGenerator(name="installment_seq", sequenceName="installment_sequence",allocationSize=1000)
 	private long installmentId;
 	private int installmentNo;
-	private Date paidDate;
+	@Temporal(TemporalType.DATE)
+	private Date datePaid;
+	@Temporal(TemporalType.DATE)
 	private Date dueDate;
-	private String status;
-	
+	private String installmentStatus;
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="emino")
 	private EmiPlan emiplan;
@@ -34,13 +40,13 @@ public class Installment {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Installment(long installmentId, int installmentNo, Date paidDate, Date dueDate, String status) {
+	public Installment(long installmentId, int installmentNo, Date datePaid, Date dueDate, String installmentStatus) {
 		super();
 		this.installmentId = installmentId;
 		this.installmentNo = installmentNo;
-		this.paidDate = paidDate;
+		this.datePaid = datePaid;
 		this.dueDate = dueDate;
-		this.status = status;
+		this.installmentStatus = installmentStatus;
 	}
 
 	public long getInstallmentId() {
@@ -59,12 +65,13 @@ public class Installment {
 		this.installmentNo = installmentNo;
 	}
 
-	public Date getPaidDate() {
-		return paidDate;
+	
+	public Date getDatePaid() {
+		return datePaid;
 	}
 
-	public void setPaidDate(Date paidDate) {
-		this.paidDate = paidDate;
+	public void setDatePaid(Date datePaid) {
+		this.datePaid = datePaid;
 	}
 
 	public Date getDueDate() {
@@ -75,12 +82,13 @@ public class Installment {
 		this.dueDate = dueDate;
 	}
 
-	public String getStatus() {
-		return status;
+	
+	public String getInstallmentStatus() {
+		return installmentStatus;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setInstallmentStatus(String installmentStatus) {
+		this.installmentStatus = installmentStatus;
 	}
 
 	public EmiPlan getEmiplan() {
@@ -93,9 +101,14 @@ public class Installment {
 
 	@Override
 	public String toString() {
-		return "Installment [installmentId=" + installmentId + ", installmentNo=" + installmentNo + ", paidDate="
-				+ paidDate + ", dueDate=" + dueDate + ", status=" + status + ", emiplan=" + emiplan + "]";
+		return "Installment [installmentId=" + installmentId + ", installmentNo=" + installmentNo + ", datePaid="
+				+ datePaid + ", dueDate=" + dueDate + ", installmentStatus=" + installmentStatus + ", emiplan="
+				+ emiplan + "]";
 	}
+
+	
+
+	
 	
 	
 
