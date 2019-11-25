@@ -9,5 +9,7 @@ public interface InstallmentService {
 	public int insertEMIPlan(Users user, Product product, double installmentAmt, int noOfMonths);
 	public EmiPlan fetchEMIPlan(int emino);
 	public boolean insertInstallment(EmiPlan emiplan,int i);
+	public boolean modifyEmiCard(double installmentAmount, Users user);
+	
 	
 }

@@ -30,7 +30,6 @@ private ProductServiceImpl service;
 @RequestMapping(path="ProductListPage", method=RequestMethod.GET)
 public String viewProduct(Model model){
 	List<Product> list = service.findAllProducts();
-	System.out.println(list);
 	model.addAttribute("productList", list);
 	return "productlist";
 }

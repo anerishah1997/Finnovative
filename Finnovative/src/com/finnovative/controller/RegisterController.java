@@ -31,7 +31,7 @@ public class RegisterController {
 	}
 	
 	@RequestMapping(path="registerUser.do",  method=RequestMethod.POST)
-	public String registerUser(@RequestParam("fullName")String fullname,@RequestParam("PhoneNo")String phoneno,@RequestParam("Email")String email,
+	public String registerUser(@RequestParam("PhoneNo")String phoneno,@RequestParam("fullName")String fullname,@RequestParam("Email")String email,
 			                   @RequestParam("Username")String username,@RequestParam("Password")String password,@RequestParam("Address")String address,
 			                   @RequestParam("income")double income,@RequestParam("Card")String cardtype,@RequestParam("Bank")String bank,
 			                   @RequestParam("AccountNumber")int accno,@RequestParam("IFSCcode")String ifsc,@RequestParam("aadhar") MultipartFile aadharDoc){
@@ -70,10 +70,10 @@ public class RegisterController {
 			return "register";
 	}
 	
-	@ExceptionHandler({Exception.class})
+	/*@ExceptionHandler({Exception.class})
 	public String handleException() {
 		return "Error";
-	    
+*/	    
 	
 }
 	
@@ -112,4 +112,3 @@ public class RegisterController {
 	
 	
 
-}

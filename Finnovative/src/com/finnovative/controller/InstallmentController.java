@@ -8,11 +8,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.finnovative.model.EmiCard;
 import com.finnovative.model.EmiPlan;
 import com.finnovative.model.Product;
 import com.finnovative.model.Users;
 import com.finnovative.service.InstallmentService;
+import com.finnovative.service.LoginService;
 
 @Controller
 public class InstallmentController {
@@ -21,9 +24,13 @@ public class InstallmentController {
 	
 	@Autowired
 	InstallmentService installmentService;
+	@Autowired
+	private LoginService loginService;
+	@Autowired
+	EmiCard emicard ;
 	
 	@RequestMapping(path="pay.do", method=RequestMethod.POST)
-	public String generaterEMIPlan(@RequestParam("calculatedEMI") double installmentAmount, HttpServletRequest request, @RequestParam("noOfMonths") int noOfMonths)
+	public ModelAndView generaterEMIPlan(@RequestParam("calculatedEMI") double installmentAmount, HttpServletRequest request, @RequestParam("noOfMonths") int noOfMonths)
 	{
 		session = request.getSession();
 		Users user = (Users) session.getAttribute("user");
@@ -35,10 +42,21 @@ public class InstallmentController {
 		{
 		   addinstallment=installmentService.insertInstallment(emiplan,i);
 		}
-		if(addinstallment)
-			return "dashboard";
+		Boolean result1=installmentService.modifyEmiCard(installmentAmount,user);
+		if(result1)
+		{
+			
+			emicard = loginService.fetchEmiCard(user);
+			ModelAndView mav=new ModelAndView("dashboard");
+			mav.addObject("emicard",emicard);
+			return mav;
+		}
 		else
-			return "Error";
+		{
+			ModelAndView mav=new ModelAndView("Error");
+		    return mav;
+	    }
+		
 	}
 
 }

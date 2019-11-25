@@ -1,5 +1,4 @@
 package com.finnovative.service;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -8,10 +7,8 @@ import com.finnovative.dao.InstallmentDao;
 import com.finnovative.model.EmiPlan;
 import com.finnovative.model.Product;
 import com.finnovative.model.Users;
-
 @Service
 public class InstallmentsServiceImpl implements InstallmentService{
-
 	@Autowired
 	InstallmentDao installmentDao;
 	
@@ -37,6 +34,17 @@ public class InstallmentsServiceImpl implements InstallmentService{
 	    	return true;
 	    else
 	    	return false;
+	}
+
+	@Override
+	@Transactional
+	public boolean modifyEmiCard(double installmentAmount,Users user)
+	{
+		int result=installmentDao.updateEmiCard(installmentAmount, user);
+		if(result!=0)
+			return true;
+		else
+			return false;
 	}
 
 }

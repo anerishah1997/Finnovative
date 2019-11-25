@@ -43,14 +43,35 @@
                     <tr>
                         <td>
                         <p class="cardType">Card Type
-                      <input type="text" name="validity" value="${emicard.cardType}" readonly="readonly"></p>
+                        <input type="text" name="validity" value="${emicard.cardType}" readonly="readonly"></p>
 
-                 
                         </td>
                     </tr>
-
                 
-                    
+     
+                 </table>
+                 <table>
+                 	<tr>
+                 		<td>
+                        <p class="cardType"> TotalCredit
+                        <input type="text" name="validity" value="${emicard.totalCredit}" readonly="readonly"></p>
+
+                        </td>
+                 	</tr>
+                 	<tr>
+                 		<td>
+                        <p class="cardType"> CreditUsed
+                        <input type="text" name="validity" value="${emicard.creditUsed}" readonly="readonly"></p>
+
+                        </td>
+                 	</tr>
+                 	<tr>
+                 		<td>
+                        <p class="cardType"> RemainingCredit
+                        <input type="text" name="validity" value="${emicard.remainingCredit}" readonly="readonly"></p>
+
+                        </td>
+                 	</tr>
                  </table>
                 </div>
 

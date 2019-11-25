@@ -11,5 +11,6 @@ public interface InstallmentDao {
 	public int createEMIPlan(Users user, Product product, double installmentAmt, int noOfMonths);
 	public EmiPlan getEMIPlan(int emino);
 	public int createInstallment(EmiPlan emiplan, int i);
+	public int updateEmiCard(double installmentAmount, Users user);
 
 }

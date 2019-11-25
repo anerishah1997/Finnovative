@@ -7,9 +7,20 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+ <link rel="stylesheet" href="css/register.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
 </head>
 <body>
-<table border="1" align="center" border="1" style="margin-left:auto;margin-right:auto;margin-top:4%;margin-bottom:0%;height:120; width:80%;" >
+<div class="full-height" id="gradstretch">
+<header>
+    <div><img src="images/logo.png" alt="logo" width="8%"></div>
+      <div class="navbar">
+    <a href=""> Dashboard</a>
+   
+    
+  </div> 
+  </header> 
+<table align="center"  cellpadding="8px" style="padding-top: 5px;"   >
         
         <c:if test="${ user != null}">
 			<c:url var="verifyUserUrl" value="verifyUser.do">
@@ -18,7 +29,7 @@
 			<c:url var="rejectUserUrl" value="rejectUser.do">
 				<c:param name="userId" value="${ user.userId }"/>
 			</c:url>
-			<tr>
+			<tr >
 				<td>User Id: </td>
 				<td><c:out  value="${ user.userId }"/></td>
 			</tr>
@@ -75,8 +86,13 @@
 			</tr>
 			<tr>
 				<td>Aadhar Card: </td>
+				<td><img src="KYCDocs/${user.aadharDoc } " alt="aadharr" style="width:100%"></td>
+			</tr>
+			<%-- <tr>
+				<td>Aadhar Card: </td>
 				<td><c:out value="${ user.aadharDoc }"/></td>
 			</tr>
+			 --%>
 			<tr>
 				<td>Status: </td>
 				<td><c:out value="${ user.status }"/></td>
@@ -89,5 +105,9 @@
 		</c:if>
         
     </table>
+    <footer class="footer"> 
+        <p align="center">©Copyright Finnovative Financial Services</p>
+</footer>
+    </div>
 </body>
 </html>

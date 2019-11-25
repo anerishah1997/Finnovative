@@ -43,7 +43,7 @@
             <td colspan="2" align="center"><input type="submit" value="Login" class="button" onclick="validate()"/></td></tr>
             </tr>
              <tr>
-                 <td><a href="">forgot password?</a></td>
+                 <td><a href="forgotPasswordPage">forgot password?</a></td>
                  <td><a href="registerPage">New User? Register here!</a></td>
              </tr>
         </table>

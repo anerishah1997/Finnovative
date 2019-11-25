@@ -6,12 +6,13 @@ import java.util.Date;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
+import com.finnovative.model.EmiCard;
 import com.finnovative.model.EmiPlan;
 import com.finnovative.model.Installment;
 import com.finnovative.model.Product;
@@ -61,8 +62,11 @@ public class InstallmentDaoImpl implements InstallmentDao{
 	public int createInstallment(EmiPlan emiplan, int i)  {
 		        Date date = emiplan.getStartDate();
 				installment.setInstallmentNo(i);
+				if(i==1)
 				installment.setDatePaid(emiplan.getStartDate());
-				LocalDate date1 = new Date().toInstant()
+				else
+				installment.setDatePaid(installment.getDueDate());	
+				LocalDate date1 = installment.getDatePaid().toInstant()
 			    	      .atZone(ZoneId.systemDefault())
 			    	      .toLocalDate();
 				LocalDate dueDate = date1.plusMonths(1);
@@ -77,28 +81,20 @@ public class InstallmentDaoImpl implements InstallmentDao{
 				EmiPlan emi1 = entityManager.find(EmiPlan.class, emiplan.getEmino());
 				installment.setEmiplan(emi1);
 				entityManager.merge(installment);
-				
 				date = date2;
-			
 				return 1;
-
-		
-		
-			/*installment.setInstallmentNo(i);
-			installment.setPaidDate(emiplan.getStartDate());
-			installment.setDueDate(emiplan.getStartDate().plusMonths(i));
-			System.out.println(emiplan.getStartDate().plusMonths(i));
-			if(i==1)
-			installment.setStatus("Paid");
-			else
-			installment.setStatus("Due");
-			
-			entityManager.persist(installment);*/
-			
-			//installment.setPaidDate(installment.getDueDate());
-			
-			//installment.setDueDate((Date)date.setDate((date.getMonth()-1 + i)%12 +1));
-		
 	}
 
+	@Override
+	public int updateEmiCard(double installmentAmount, Users user) {
+		double totalCredit=user.getEmicard().getTotalCredit()-installmentAmount;
+		double creditUsed=user.getEmicard().getCreditUsed()+installmentAmount;
+		double remainingCredit=totalCredit-creditUsed;
+		int userId=user.getUserId();
+		Query query=entityManager.createQuery("Update EmiCard e set e.totalCredit="+totalCredit+" ,e.remainingCredit="+remainingCredit+" , e.creditUsed="+creditUsed+"");
+		int result=query.executeUpdate();
+		return result;
+	}
+
+	
 }

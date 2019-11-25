@@ -22,8 +22,8 @@ import org.springframework.stereotype.Component;
 @Scope(value="prototype")
 public class Installment {
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator= "installment_seq")
-	@SequenceGenerator(name="installment_seq", sequenceName="installment_sequence",allocationSize=1000)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator= "installment_sequence")
+	@SequenceGenerator(name="installment_sequence", sequenceName="installment_sequence",allocationSize=1)
 	private long installmentId;
 	private int installmentNo;
 	@Temporal(TemporalType.DATE)
