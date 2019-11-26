@@ -1,6 +1,7 @@
 package com.finnovative.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -16,5 +17,11 @@ public class EMIController {
 		mav.addObject("calculatedEMI", emi);
 		return mav;
 	}
+	@ExceptionHandler({Exception.class})
+	public String handleException() {
+		return "Error";
+	    
+	
+}
 
 }

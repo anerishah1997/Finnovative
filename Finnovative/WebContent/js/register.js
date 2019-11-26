@@ -12,8 +12,9 @@ function Validate() {
         // document.getElementById("passwordError").innerHTML = "Password matched";
         document.getElementById("confirmPasswordError").innerHTML = "";
         document.getElementById("register").disabled= false;
-     } 
-    }
+     }
+    
+}
 
 function MobileNumber() {
         var mob = /^[1-9]{1}[0-9]{9}$/;
@@ -35,6 +36,7 @@ function AnnualIncome(){
     var income = document.getElementById("annualIncome").value;
     document.getElementById("titanium").disabled=true;
     if(income<300000){
+    	
         document.getElementById("titanium").disabled=true;
         document.getElementById("annualIncomeError").innerHTML = "Not eligible for titanium card";
     }
@@ -44,3 +46,7 @@ function AnnualIncome(){
     }
 }
 
+function AlertUser()
+{
+	alert("Registration Succesful!!! Your details are under verification.Login once you recieve confirmation mail");
+}

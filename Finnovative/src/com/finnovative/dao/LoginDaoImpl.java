@@ -85,7 +85,7 @@ public class LoginDaoImpl implements LoginDao{
     	emicard.setUser(user1);
     	//user1.setEmicard(emicard);
     	
-    	entityManager.persist(emicard);
+    	emicard=entityManager.merge(emicard);//changes
     	return 1;
     	/**/
     }

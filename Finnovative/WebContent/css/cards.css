@@ -72,6 +72,7 @@
 
   .button {
     background-color: #2D4B73 ;
+    font-family: 'Raleway', sans-serif;
     border: none;
     color: white;
     padding: 6px 18px;
@@ -127,14 +128,16 @@
     line-height: 1; 
     text-align: center;
   }
-  .welcomePara{
-    color: #685206; 
-    font-family: 'Helvetica Neue', sans-serif; 
-    font-size: 14px; 
+  pre{
+    color: #2D4B73; 
+    font-family: 'Raleway', sans-serif;
+    font-size: 20px; 
     line-height: 24px;
+    font-weight:bold;
     margin: 0 0 24px; 
-    text-align: justify; 
+    text-align: center; 
     text-justify: inter-word;
+    
   }
   .footer {
     

@@ -36,13 +36,26 @@ public class EmiPlan {
 	@JoinColumn(name="productid")
 	private Product product;
 	
-	@OneToMany(mappedBy="emiplan")
+	@OneToMany(mappedBy="emiplan",cascade=CascadeType.ALL)//changes
 	private Set<Installment> installments=new HashSet<>();
 
 	public EmiPlan() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
+	
+	
+
+	public Set<Installment> getInstallments() {
+		return installments;
+	}
+
+
+
+	public void setInstallments(Set<Installment> installments) {
+		this.installments = installments;
+	}
+
+
 
 	public EmiPlan(int emino, Date startDate, Date endDate, int noOfMonths, double emiAmount) {
 		super();

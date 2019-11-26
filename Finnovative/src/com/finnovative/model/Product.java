@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
@@ -32,6 +33,9 @@ public class Product {
 	
 	@OneToMany(mappedBy="product")
 	private Set<EmiPlan> emiplan=new HashSet<>();
+	
+	@OneToMany(mappedBy="product")
+	private Set<ProductTransaction> productTransactions=new HashSet<>();
 
 	/*private int transactionId;//fk
 	@OneToMany(mappedBy="product",cascade=CascadeType.ALL)
@@ -95,7 +99,23 @@ public class Product {
 	public void setProductPrice(double productPrice) {
 		this.productPrice = productPrice;
 	}
+	
+	
 
+	public Set<EmiPlan> getEmiplan() {
+		return emiplan;
+	}
+	public void setEmiplan(Set<EmiPlan> emiplan) {
+		this.emiplan = emiplan;
+	}
+	public Set<ProductTransaction> getProductTransactions() {
+		return productTransactions;
+	}
+	
+	public void setProductTransactions(Set<ProductTransaction> productTransactions) {
+		this.productTransactions = productTransactions;
+	}
+	
 	@Override
 	public String toString() {
 		return "Product [productId=" + productId + ", productName=" + productName + ", productDetails=" + productDetails

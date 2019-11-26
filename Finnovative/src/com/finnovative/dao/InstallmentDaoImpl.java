@@ -43,9 +43,11 @@ public class InstallmentDaoImpl implements InstallmentDao{
 		emiplan.setUser(user1);
 		Product product1 = entityManager.find(Product.class, product.getProductId());
 		emiplan.setProduct(product1); 
+		//entityManager.persist(emiplan);
+		emiplan=entityManager.merge(emiplan);
 		
-		entityManager.persist(emiplan);
 		return emiplan.getEmino();
+		
 	}
 
 	@Override
@@ -87,11 +89,13 @@ public class InstallmentDaoImpl implements InstallmentDao{
 
 	@Override
 	public int updateEmiCard(double installmentAmount, Users user) {
-		double totalCredit=user.getEmicard().getTotalCredit()-installmentAmount;
-		double creditUsed=user.getEmicard().getCreditUsed()+installmentAmount;
-		double remainingCredit=totalCredit-creditUsed;
-		int userId=user.getUserId();
-		Query query=entityManager.createQuery("Update EmiCard e set e.totalCredit="+totalCredit+" ,e.remainingCredit="+remainingCredit+" , e.creditUsed="+creditUsed+"");
+		Users user1 = entityManager.find(Users.class, user.getUserId());
+		double totalCredit=user1.getEmicard().getTotalCredit();
+		double creditUsed=user1.getEmicard().getCreditUsed();
+		creditUsed=creditUsed+installmentAmount;
+		double remainingCredit= user1.getEmicard().getRemainingCredit();
+		remainingCredit = totalCredit-creditUsed;
+		Query query=entityManager.createQuery("Update EmiCard e set e.remainingCredit="+remainingCredit+" , e.creditUsed="+creditUsed+" where userid="+user1.getUserId());
 		int result=query.executeUpdate();
 		return result;
 	}

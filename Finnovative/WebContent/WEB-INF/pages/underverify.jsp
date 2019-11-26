@@ -1,3 +1,4 @@
+<%@ page errorPage="Error.jsp" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -6,7 +7,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Pay Fee</title>
+<title>Under Verification</title>
+ <link rel="stylesheet" href="css/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
 <!-- <script type="text/javascript">
 	$(document).ready(function(){
 		$.ajax({
@@ -17,6 +21,18 @@
 </script> -->
 </head>
 <body>
+<div class="full-height" id="grad1">
+<section>
+    <div>
+    <img src="images/logo.png" alt="logo" width="8%">
+    </div>
+  <div class="navbar">
+            <a href="indexPage">Home</a>
+ 			
+            <a style="float:right" href="logOut.do">Logout</a>
+          
+          </div>
+          </section>
 
 
 <%-- <c:forEach  items="${ requestScope.user }">
@@ -38,7 +54,7 @@
 <c:otherwise>
 
 
-YOUR DETAILS ARE UNDER VERFICATION...
+Your Details are under Verification...Please refresh to login further.
 </c:otherwise>
 </c:choose>
 

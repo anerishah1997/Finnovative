@@ -1,3 +1,4 @@
+<%@ page errorPage="Error.jsp" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
       <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -10,10 +11,7 @@
   
 <title>Finnovative Finance Services</title>
 </head>
-<style>
 
-
-</style>
 <body>
  <div class="full-height" id="grad1">
 <header>
@@ -27,11 +25,9 @@
           </div>
           </header>
           <div><marquee style="color:#2D4B73;" direction="left"><h3>No cost EMI is available on wide range of products from Apple, OnePlus and Samsung.</h3></marquee></div>
-  <p class="welcomePara">Welcome to Finnovative Financial Service.Finnovative financial service is an Indian financial service 
-      established in 2001.Headquatered in Mumbai ,the company have 6 branches consumer across India. Finnovative
-      Financial Service is expetise in EMI service in which cousumer is provided with four types of EMI option
-      as 3 months, 6 months, 9 months, 12 months with ZERO INTEREST RATE
-  </p>
+  <pre >Welcome to Finnovative Financial Services. Finnovative Financial Service is expertise in EMI service in which Consumer is provided with four 
+  types of EMI option as 3 months, 6 months, 9 months, 12 months with <b>ZERO INTEREST RATE.</b>
+  </pre>
     <form action="userloginPage" method="get" id="index">
      <div class="row" >
        <c:forEach var="prod" items="${ requestScope.productList }">
@@ -42,7 +38,7 @@
             <img src="images/${ prod.productImage }" alt="img" style="width:100%">
             <p><c:out value="${ prod.productName }"/></p>
             <p><b><c:out value="${ prod.productDetails }"/></b></p>
-            <p><b><c:out value="${ prod.productPrice }"/></b></p>
+            <p><b>Rs. <c:out value="${ prod.productPrice }"/></b></p>
             
             <button type="submit" name="productId" class="button">BUY NOW</button>
            </div>

@@ -141,16 +141,22 @@ div {
 
 .activateStatus{
   font-size: 100%;
-  font-style: italic;
+  font-style: oblique;
+  border-style:double;
+  border-radius:5px;
   color:white;
-  background-color: #5FBF1B
+  background-color: #5FBF1B;
+  text-shadow: black;
+  text-shadow: activeborder;
 }
 
  div[class=virtualCard],select{
   margin-left: 2%;
   width: 30%;
-  background-image: linear-gradient(#bce0ee, #2D4B73);
-  box-shadow: 2px -1px 0px .1em #2D4B73;
+  /* background-color:#116FB4;  */
+  background-image: linear-gradient(#bce0ee, #116FB4);
+  /* background-image: linear-gradient(#bce0ee, #2D4B73); */
+  /* box-shadow: 2px -1px 0px .1em #2D4B73; */
   height:25%;
   color: white;
   font-family: 'Raleway', sans-serif;
@@ -181,4 +187,30 @@ div {
 header{
   position: relative;
   width: 100%;
+}
+h2{
+	color: #2D4B73;
+	font-family: 'Raleway', sans-serif;
+}
+.card1{
+	
+	text-align: left;
+	border-style:none;
+	background-color: transparent;
+	font-family: sans-serif;
+	color: white;
+	font-size: 15px;
+	margin-bottom: 5px;
+}
+
+.card2{
+	
+	text-align: left;
+	border-style:none;
+	background-color: transparent;
+	font-family: sans-serif;
+	text-shadow:black;]
+	color: white;
+	font-size: 20px;
+	
 }

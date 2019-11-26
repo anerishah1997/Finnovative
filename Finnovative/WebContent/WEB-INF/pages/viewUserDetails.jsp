@@ -1,3 +1,4 @@
+<%@ page errorPage="Error.jsp" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
      <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -15,16 +16,18 @@
 <header>
     <div><img src="images/logo.png" alt="logo" width="8%"></div>
       <div class="navbar">
-    <a href=""> Dashboard</a>
+    <a href="adminDashboardPage"> Dashboard</a>
    
     
   </div> 
   </header> 
-<table align="center"  cellpadding="8px" style="padding-top: 5px;"   >
+<table class="tab" align="center"  cellpadding="8px" style="padding-top: 5px;"   >
         
         <c:if test="${ user != null}">
 			<c:url var="verifyUserUrl" value="verifyUser.do">
 				<c:param name="userId" value="${ user.userId }"/>
+				<c:param name="email" value="${ user.email }"/>
+				<c:param name="username" value="${ user.username }"/>
 			</c:url>
 			<c:url var="rejectUserUrl" value="rejectUser.do">
 				<c:param name="userId" value="${ user.userId }"/>
@@ -64,7 +67,7 @@
 			</tr>
 			<tr>
 				<td>Annual Income: </td>
-				<td><c:out value="${ user.annualIncome }"/></td>
+				<td>Rs.<c:out value="${ user.annualIncome }"/></td>
 			</tr>
 			<tr>
 				<td>Card Type: </td>
@@ -86,7 +89,7 @@
 			</tr>
 			<tr>
 				<td>Aadhar Card: </td>
-				<td><img src="KYCDocs/${user.aadharDoc } " alt="aadharr" style="width:100%"></td>
+				<td><img src="/KYCDocsUsers/${user.aadharDoc } " alt="aadharr" style="width:100%"></td>
 			</tr>
 			<%-- <tr>
 				<td>Aadhar Card: </td>

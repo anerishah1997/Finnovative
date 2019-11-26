@@ -21,7 +21,7 @@ public class ProductDaoImpl implements ProductDao {
 		String jpql = "Select p From Product p";
 		TypedQuery<Product> tquery = entityManager.createQuery(jpql,Product.class);
 		List<Product> list = tquery.getResultList();
-		System.out.println(list);
+		
 		return list;
 	}
 

@@ -1,79 +1,119 @@
+<%@ page errorPage="Error.jsp" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+      <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <link rel="stylesheet" href="css/nav.css">
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css"> 
+    <script src="js/dashboard.js"></script>
     
-<title>Insert title here</title>
+<title>User Dashboard</title>
 </head>
 <body>
-<body><h1><b><i>FINNOVATIVE</i></b></h1>
-    <div >
-            <a href="indexPage"><i class="fa fa-fw fa-home"></i> Home</a>
-            <!-- <a href="register.html"><i class="fa fa-fw fa-search"></i> Register</a> -->
-            <a href="ProductListPage"><i class="fa fa-fw fa-envelope"></i> Browse Products</a>
-            <!-- <a href="userlogin.html"><i class="fa fa-fw fa-user"></i> Login</a> -->
-            <a style="float:right" href="logOut.do"><i class="fa fa-fw fa-user"></i>Log out</a>
+    <div class="full-height" id="grad1">
+        <header>
+            <div>
+                 <img src="images/logo.png" alt="logo" width="8%">
+            </div>
+            <div class="navbar">
+            <a href="indexPage">Home</a>
+            <a href="ProductListPage">Browse Products</a>
+            <a style="float:right" href="logOut.do">Log out</a>
           </div>
+           </header>
+    <br> 
+          
+<h2 style="margin-left: 10px">Hello, <label>${ emicard.user.fullName}</label></h2>
 
-          <div  >
-                <table style="margin-left:auto;margin-right:auto;margin-top:4%;margin-bottom:0%; 
-                                border-style:solid">
-                    <tr>
-                        <td>
-                        <p class="cardNumber">Card Number:<input type="text" name="cardNumber" value="${emicard.cardNumber}" readonly="readonly"></p>
-                        <p></p>
-                        </td>
-                    </tr>
-                    <tr>
-                       <td>
-                        <p class="name" >Name:<input type="text" name="name" value="${emicard.user.fullName}" readonly="readonly"></p>
-                        <p></p>
-                       
-                    </tr>
-                    <tr>
-                        <td>
-                        <p class="validTill">Valid Till:
-  						<input type="text" name="validity" value="${emicard.validityExp}" readonly="readonly"></p>
-                     
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                        <p class="cardType">Card Type
-                        <input type="text" name="validity" value="${emicard.cardType}" readonly="readonly"></p>
+<div class="row">
+	<div class="column">
 
-                        </td>
+		<div class="container">
+        	<div class="virtualCard" style="margin-left:33%;">
+                <table width=100%; padding=3px; >
+                    <tr>
+                        <td><img src="images/logo.png" alt="logo" width="50%" ></td>
+                        <td><input type="button" class="activateStatus" name="activate" value="ACTIVATED" disabled></td>
+                    </tr>
+                    <tr>
+                        <td><label class="card1">Card Number: </label></td>
+                        <td><label class="card1">${emicard.cardNumber}</label></td>
+                        <%-- <td><input class="card1" type="text" name="cardNumber" value="${emicard.cardNumber}" readonly="readonly"></td> --%>
+                    </tr>
+                    
+                    <tr>
+                        <td><label class="card1">Validity:</label></td>
+                         <td><label class="card1">${emicard.validityExp}</label></td>
+                       <%--  <td><input class="card1" type="text" name="validity" value="${emicard.validityExp}" readonly="readonly"></td> --%>
+                    </tr>
+                    <tr>
+                        <td><label class="card1">Card Type:</label></td>
+                        <td><label class="card1">${emicard.cardType}</label></td>
+                       <%--  <td><input class="card1" type="text" name="validity" value="${emicard.cardType}" readonly="readonly"></td> --%>
+                    </tr>
+                    <tr>
+                     <td><label class="card2">${emicard.user.fullName}</label></td>
+                        <%-- <td><input class="card1" type="text" name="cardNumber" value="${emicard.user.fullName}" readonly="readonly"></td> --%>
                     </tr>
                 
-     
-                 </table>
-                 <table>
-                 	<tr>
-                 		<td>
-                        <p class="cardType"> TotalCredit
-                        <input type="text" name="validity" value="${emicard.totalCredit}" readonly="readonly"></p>
+                </table>
+             </div>
+             </div>
+              </div>
+             <div class="column"  style="margin-left:40%;font-weight: bolder;">
+             
 
-                        </td>
-                 	</tr>
-                 	<tr>
-                 		<td>
-                        <p class="cardType"> CreditUsed
-                        <input type="text" name="validity" value="${emicard.creditUsed}" readonly="readonly"></p>
-
-                        </td>
-                 	</tr>
-                 	<tr>
-                 		<td>
-                        <p class="cardType"> RemainingCredit
-                        <input type="text" name="validity" value="${emicard.remainingCredit}" readonly="readonly"></p>
-
-                        </td>
-                 	</tr>
-                 </table>
-                </div>
-
+                <table  cellpadding=10px; >
+                    <tr>
+                        <td><label class="card3">Total credit: </label></td>
+                        <td><label class="card3">${emicard.totalCredit}</label></td>
+                    </tr>
+                    
+                    <tr>
+                        <td><label class="card3">Credit used:</label></td>
+                         <td><label class="card3">${emicard.creditUsed}</label></td>
+                    </tr>
+                    <tr>
+                        <td><label class="card3">Remaining Credit:</label></td>
+                        <td><label class="card3">${emicard.remainingCredit}</label></td>
+                    </tr>
+                   
+                
+                </table>
+             </div>
+             <div>
+             
+              <c:choose>  
+  			<c:when test="${sessionScope.user != null }">  
+  			 <table style="margin-left:auto;margin-right:auto;margin-top:4%;margin-bottom:0%; 
+                                border-style:solid"> 
+  		<tr>
+  		<td>
+  			<c:out value="${ productTransaction.transactionId}"/>
+  		</td>
+  		<td>
+  			<c:out value="${ productTransaction.product.productName}"/>
+  			</td>
+  		<td>
+  		<c:out value="${ productTransaction.product.productPrice}"/>
+  		</td>
+  		<td>
+  			<c:url var="InstallmentsUrl" value="Installments">
+  			</c:url>
+  			</table>
+  		</c:when>  
+  </c:choose>
+             </div>
+             
+             
+             </div>
+            
+   <footer class="footer"> 
+        <p align="center">©Copyright Finnovative Financial Services</p>
+</footer>     
+</div>
 </body>
 </html>

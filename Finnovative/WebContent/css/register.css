@@ -156,7 +156,9 @@
     height: 6%;
     background-color:#2D4B73;
     color: white;
-    padding-top: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
   }
   .footer1 {
       
@@ -167,11 +169,53 @@
     height: 6%;
     background-color:#2D4B73;
     color: white;
-    padding-top: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
   }
   
   header{
     position: relative;
     width: 100%;
   }
+ 
+  .select-selected {
+  background-color: white;
+}
+.custom-select select {
+  display: none; /*hide original SELECT element: */
+  background-color: white;
+}
+h2{
+	color: #2D4B73;
+	font-family: 'Raleway', sans-serif;
+}
+
+a:link, a:visited {
+  background-color: #2D4B73;
+  color: white;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+a:hover, a:active {
+  background-color: #2D4B73;
+}
   
+  .tab{
+  font-weight: bold;
+  border: 1px;
+  
+  }
+  
+  
+.file1{
+	
+	  margin: 0;
+  padding: 1rem 1rem;
+  font: 1rem/1.5 "PT Sans", Arial, sans-serif;
+  color:  #2D4B73;
+}
+  
+   

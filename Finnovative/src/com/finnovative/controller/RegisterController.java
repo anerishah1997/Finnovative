@@ -35,8 +35,8 @@ public class RegisterController {
 			                   @RequestParam("Username")String username,@RequestParam("Password")String password,@RequestParam("Address")String address,
 			                   @RequestParam("income")double income,@RequestParam("Card")String cardtype,@RequestParam("Bank")String bank,
 			                   @RequestParam("AccountNumber")int accno,@RequestParam("IFSCcode")String ifsc,@RequestParam("aadhar") MultipartFile aadharDoc){
-		
-		String path="D:/KYCDocsUsers/";
+		String path="C:/Program Files/Apache Software Foundation/Tomcat 8.0/webapps/KYCDocsUsers/";
+		/*String path="D:/KYCDocsUsers/";*/
 		String docpath= path+aadharDoc.getOriginalFilename();
 		String dbpath= aadharDoc.getOriginalFilename();
 		
@@ -70,44 +70,12 @@ public class RegisterController {
 			return "register";
 	}
 	
-	/*@ExceptionHandler({Exception.class})
+	@ExceptionHandler({Exception.class})
 	public String handleException() {
 		return "Error";
-*/	    
-	
+	    
+	}
 }
-	
-	/*@RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
-	public @ResponseBody
-	String uploadFileHandler(@RequestParam("name") String name, @RequestParam("file") MultipartFile file) {
-		if (!file.isEmpty()) {
-			try {
-				byte[] bytes = file.getBytes();
-
-				//Creating the directory to store file
-				//String rootPath = System.getProperty("catalina.home");
-				String rootPath = "D:/";
-				File dir = new File(rootPath + File.separator + "KYCDocument");
-				if (!dir.exists())
-					dir.mkdirs();
-
-				String docPath = rootPath+"/KYCDocument/"+name;
-				//Create the file on server
-				File serverFile = new File(dir.getAbsolutePath()+ File.separator + name);
-				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
-				stream.write(bytes);
-				stream.close();
-
-				return docPath;
-				return "You successfully uploaded file=" + name;
-			} catch (Exception e) {
-				return "You failed to upload " + name + " => " + e.getMessage();
-			}
-		} else {
-			return "You failed to upload " + name + " because the file was empty.";
-		}
-	}*/
-	
 	
 	
 	

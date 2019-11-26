@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -72,7 +73,7 @@ public class EmailController {
 	public String updatePass(@RequestParam("pass")String pass,@RequestParam("email") String email,HttpServletRequest request)
 	{
 		String password=request.getParameter("pass");
-		System.out.println(email);
+		
 		String result=service.modifyPassword(password,email);
 		if(result!=null)
 			return "userlogin";
@@ -85,4 +86,10 @@ public class EmailController {
 	{
 		return "FORGOTPASSWORDSUCCESS";
 	}
+	@ExceptionHandler({Exception.class})
+	public String handleException() {
+		return "Error";
+	    
+	
+}
 }

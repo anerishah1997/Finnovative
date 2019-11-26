@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -56,7 +57,6 @@ public class LoginController {
 		model.put("users",user);
 	    session = request.getSession();
 	    session.setAttribute("user", user);
-		System.out.println(user.getStatus());
 		if(user.getStatus().equals("APPROVED"))
 		{			
 			EmiCard card = loginService.fetchEmiCard(user);
@@ -84,7 +84,7 @@ public class LoginController {
 	{
 		Users user = (Users) model.get("users");
 		boolean result = loginService.checkStatus(user.getUsername());
-		System.out.println(user.getUsername());
+		
 		if(result){
 			String card = loginService.checkCard(user.getUsername());
 			if(card.equals("Gold"))
@@ -125,7 +125,7 @@ public class LoginController {
 		 request.removeAttribute("users");
 		 request.getSession().invalidate();
 		 List<Product> list = productService.findAllProducts();
-		 System.out.println(list);
+		
 		 model.addAttribute("productList", list);
 		 return "index";
 		 
@@ -139,4 +139,21 @@ public class LoginController {
 			 return "productlist";
 			 
 	 }
+	 
+	 @RequestMapping(path="viewDashboardPage",method=RequestMethod.GET)
+	 public ModelAndView showDashboard(ModelMap model){
+		 
+		 Users user = (Users)model.get("users");
+		 EmiCard emicard = loginService.fetchEmiCard(user);
+		 ModelAndView mav= new ModelAndView("dashboard");
+		 mav.addObject("emicard", emicard);
+		 return mav;
+	 }
+	 @ExceptionHandler({Exception.class})
+		public String handleException() {
+			return "Error";
+		    
+		
+	}
+	 
 }

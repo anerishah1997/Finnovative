@@ -47,6 +47,12 @@ public class Users {
 	
 	
 	
+	public Set<EmiPlan> getEmiplans() {
+		return emiplans;
+	}
+	public void setEmiplans(Set<EmiPlan> emiplans) {
+		this.emiplans = emiplans;
+	}
 	public EmiCard getEmicard() {
 		return emicard;
 	}

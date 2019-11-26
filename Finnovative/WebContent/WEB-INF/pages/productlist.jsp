@@ -1,3 +1,4 @@
+<%@ page errorPage="Error.jsp" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -16,8 +17,8 @@
     </div>
   <div class="navbar">
             <a href="indexPage">Home</a>
-            <a href="registerPage">Register</a>
-            <!-- <a href="userloginPage">Login</a> -->
+ 			<a href="viewDashboardPage">Dashboard</a>
+            <a style="float:right" href="logOut.do">Logout</a>
           
           </div>
           </section>
@@ -26,25 +27,30 @@
      
   <c:when test="${sessionScope.user != null }">    
 	 
-	 	
+	 	<br>
 		<form action="buyProduct.do" method="GET" enctype="multipart/form-data">
+		 <div class="row" >
+		 <br>
 		 <c:forEach var="prod" items="${ requestScope.productList }">
 		 	   
 		 	   
 		 	   <div align="center">  
-        <div class="row" >
+       
           <div class="column">
             <div class="card">
               <img src="images/${ prod.productImage }" alt="OnePlus3" style="width:100%">
              
               <p class="title"><c:out value="${ prod.productName }"/></p>
               <p><b><c:out value="${ prod.productDetails }"/></b></p>
-              <p><c:out value="${ prod.productPrice }"/></p>
+              <p>Rs. <c:out value="${ prod.productPrice }"/></p>
               <button type="submit" name="productId" value=${prod.productId} >BUY NOW</button>
               <!-- <input type="button" onclick="" name="Buy Now" class="button" value="Buy Now"> -->
             </div>
           </div>
           </div>
+          
+            </c:forEach>
+          
           </div>
 		 	   
 		 	   <%--  <tr>
@@ -63,7 +69,7 @@
 				    <td> <p><button type="submit" name="productId" value=${prod.productId} >BUY NOW</button></p></td>
 				</tr> --%>
 					
-		  </c:forEach>
+		
 				
 		
 	
