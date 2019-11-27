@@ -16,17 +16,14 @@ public class AdminDaoImpl implements AdminDao{
 
 	@PersistenceContext
 	EntityManager entityManager;
-	
+
 	@Override
 	public int readLogin(String username,String password) {
 		String query="Select a from Admin a where a.username='"+username+"' and a.password='"+password+"'";
-		System.out.println("in dao");
-		TypedQuery<Admin> tquery= entityManager.createQuery(query,Admin.class);
-		System.out.println(tquery);
+		TypedQuery<Admin> tquery= entityManager.createQuery(query,Admin.class);		
 		/*tquery.setParameter("uname", username);
 		tquery.setParameter("pass",password);*/
 		List<Admin> list= tquery.getResultList();
-		System.out.println(list.size());
 		return list.size();
 	}
 
@@ -43,7 +40,7 @@ public class AdminDaoImpl implements AdminDao{
 		String query = "Select u from Users u where u.userId="+userId;
 		TypedQuery<Users> tquery = entityManager.createQuery(query, Users.class);
 		Users user  = tquery.getSingleResult();
-		
+
 		return user;
 	}
 
@@ -57,13 +54,13 @@ public class AdminDaoImpl implements AdminDao{
 
 	@Override
 	public boolean activateUser(Users user) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public int rejectUser(int userId) {
-		String jpql = "Update Users u set u.status='REJECTED' where u.userId="+userId;
+
+		String jpql = "Delete from Users u where u.userId="+userId;
 		Query query = entityManager.createQuery(jpql);
 		int result = query.executeUpdate();
 		return result;

@@ -20,15 +20,15 @@ public class EmailDaoImpl implements EmailDao{
 		TypedQuery<String> tquery= entityManager.createQuery(query,String.class);
 		String pass =  tquery.getSingleResult();
 		return pass;
-		}
-		
-
-		
-		
 	}
-	
-	
-/*	public int Login(String email,String  password) {
-	
+
+
+
+
 }
-*/
+
+
+/*	public int Login(String email,String  password) {
+
+}
+ */

@@ -11,14 +11,14 @@ public class UpdatePasswordDaoImpl implements UpdatePasswordDao {
 	private EntityManager entitymanager;
 	@Override
 	public int updatePassword(String password,String email) {
-		
+
 		Query query = entitymanager.createQuery("UPDATE Users u SET u.password=:password where email=:email");
 		query.setParameter("password", password);
 		query.setParameter("email", email);
 		int result=query.executeUpdate();
 		return result;
-				
+
 	}
-	
+
 
 }

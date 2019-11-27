@@ -214,3 +214,22 @@ h2{
 	font-size: 20px;
 	
 }
+
+a:link, a:visited {
+  background-color: #2D4B73;
+  color: white;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+a:hover, a:active {
+  background-color: #2D4B73;
+}
+  
+  .tab{
+  font-weight: bold;
+  border: 1px;
+  
+  }

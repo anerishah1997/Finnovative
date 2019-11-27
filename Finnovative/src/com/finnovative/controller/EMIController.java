@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class EMIController {
-	
+
 	@RequestMapping(path="calculateEMI.do")
 	public ModelAndView calculateEMI(@RequestParam("noOfMonths")int noOfMonths, @RequestParam("prodPrice")double price)
 	{
@@ -20,8 +20,8 @@ public class EMIController {
 	@ExceptionHandler({Exception.class})
 	public String handleException() {
 		return "Error";
-	    
-	
-}
+
+
+	}
 
 }

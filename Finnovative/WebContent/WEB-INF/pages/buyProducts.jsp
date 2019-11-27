@@ -54,7 +54,8 @@
 			</tr>
 			<tr>
 				<td colspan="2">Your Calculated EMI is:<input type="text"
-					id="calculatedEMI" name="calculatedEMI" onkeyup="Validate();" readonly ></td>
+					id="calculatedEMI" name="calculatedEMI" onkeyup="Validate();"
+					readonly></td>
 			</tr>
 
 			<tr>

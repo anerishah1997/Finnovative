@@ -59,25 +59,10 @@ public class Users {
 	public void setEmicard(EmiCard emicard) {
 		this.emicard = emicard;
 	}
-	/*@OneToOne(mappedBy="user",cascade=CascadeType.ALL)
-	EmiCard card;
-	@OneToMany(mappedBy="user",cascade=CascadeType.ALL,fetch=FetchType.EAGER)
-	private Set<Transaction>transaction;
-	public EmiCard getCard() {
-		return card;
-	}
-	public void setCard(EmiCard card) {
-		this.card = card;
-	}
-	public Set<Transaction> getTransaction() {
-		return transaction;
-	}
-	public void setTransaction(Set<Transaction> transaction) {
-		this.transaction = transaction;
-	}*/
+	
 	public Users() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 	public Users(int userId, String fullName, String mobileNumber, String email, String username, String password,
 			String address, double annualIncome, String cardType, String bankName, long accountNumber, String ifscCode,
@@ -202,17 +187,3 @@ public class Users {
 	
 
 }
-
-/*user_id number(8) primary key,
-fullname varchar2(45) NOT NULL,
-phone_number number(10) NOT NULL,
-email varchar2(50) NOT NULL,
-username varchar2(20)NOT NULL PRIMARY KEY,
-password varchar2(25) NOT NULL UNIQUE ,
-address varchar2(60) NOT NULL,
-annual_income number(8,2) NOT NULL, 
-card_type varchar2(12),
-bank_name varchar2(30) NOT NULL,
-account_number number(12) UNIQUE ,
-ifsc_code varchar2(12),
-aadhar_document blob*/

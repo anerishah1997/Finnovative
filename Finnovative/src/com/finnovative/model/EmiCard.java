@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 
 @Entity
 @Component
-@Scope(value="prototype")
+
 public class EmiCard {
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="cardNo_seq")

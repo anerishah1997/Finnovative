@@ -19,37 +19,37 @@ import com.finnovative.service.RegisterService;
 
 @Controller
 public class RegisterController {
-	
+
 	@Autowired
 	RegisterService service;
 	@Autowired
 	Users user;
-	
+
 	@RequestMapping(path="registerPage", method=RequestMethod.GET)
 	public String registerPage(){
 		return "register";
 	}
-	
+
 	@RequestMapping(path="registerUser.do",  method=RequestMethod.POST)
 	public String registerUser(@RequestParam("PhoneNo")String phoneno,@RequestParam("fullName")String fullname,@RequestParam("Email")String email,
-			                   @RequestParam("Username")String username,@RequestParam("Password")String password,@RequestParam("Address")String address,
-			                   @RequestParam("income")double income,@RequestParam("Card")String cardtype,@RequestParam("Bank")String bank,
-			                   @RequestParam("AccountNumber")int accno,@RequestParam("IFSCcode")String ifsc,@RequestParam("aadhar") MultipartFile aadharDoc){
+			@RequestParam("Username")String username,@RequestParam("Password")String password,@RequestParam("Address")String address,
+			@RequestParam("income")double income,@RequestParam("Card")String cardtype,@RequestParam("Bank")String bank,
+			@RequestParam("AccountNumber")int accno,@RequestParam("IFSCcode")String ifsc,@RequestParam("aadhar") MultipartFile aadharDoc){
 		String path="C:/Program Files/Apache Software Foundation/Tomcat 8.0/webapps/KYCDocsUsers/";
 		/*String path="D:/KYCDocsUsers/";*/
 		String docpath= path+aadharDoc.getOriginalFilename();
 		String dbpath= aadharDoc.getOriginalFilename();
-		
+
 		try{
 			aadharDoc.transferTo(new File(docpath));
-			
+
 		}
 		catch(IOException e)
 		{
 			System.out.println("failed to upload file"+e);
 		}
-		
-		
+
+
 		user.setFullName(fullname);
 		user.setMobileNumber(phoneno);
 		user.setEmail(email);
@@ -69,14 +69,14 @@ public class RegisterController {
 		else
 			return "register";
 	}
-	
+
 	@ExceptionHandler({Exception.class})
 	public String handleException() {
 		return "Error";
-	    
+
 	}
 }
-	
-	
-	
+
+
+
 

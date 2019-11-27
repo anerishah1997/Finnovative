@@ -14,10 +14,10 @@ import com.finnovative.service.ProductService;
 
 @Controller
 public class HomeController {
-	
+
 	@Autowired
 	ProductService prodService;
-	
+
 	@RequestMapping(path="/" ,method=RequestMethod.GET)
 	public ModelAndView homePage(){
 		List<Product> list= prodService.findAllProducts();
@@ -33,12 +33,18 @@ public class HomeController {
 		mav.addObject("productList", list);
 		return mav;
 	}
+	@RequestMapping(path="aboutUsPage", method=RequestMethod.GET)
+	public String aboutUsPage()
+	{
+		return "AboutUs";
+	}
+
 	@ExceptionHandler({Exception.class})
 	public String handleException() {
 		return "Error";
-	    
-	
-}
-	
-	
+
+
+	}
+
+
 }

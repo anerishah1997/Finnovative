@@ -1,10 +1,13 @@
 package com.finnovative.service;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.finnovative.dao.InstallmentDao;
 import com.finnovative.model.EmiPlan;
+import com.finnovative.model.Installment;
 import com.finnovative.model.Product;
 import com.finnovative.model.Users;
 @Service
@@ -15,7 +18,8 @@ public class InstallmentsServiceImpl implements InstallmentService{
 	@Override
 	@Transactional
 	public int insertEMIPlan(Users user, Product product, double installmentAmt, int noOfMonths) {
-		return installmentDao.createEMIPlan(user, product, installmentAmt, noOfMonths);
+		int emino = installmentDao.createEMIPlan(user, product, installmentAmt, noOfMonths);
+		return emino;
 	}
 
 	@Override
@@ -45,6 +49,17 @@ public class InstallmentsServiceImpl implements InstallmentService{
 			return true;
 		else
 			return false;
+	}
+
+	@Override
+	public List<Installment> fetchInstallment(int emino) {
+		
+		return installmentDao.fetchInstallment(emino);
+	}
+
+	@Override
+	public int fetchEmino(int userId, int productId) {
+		return installmentDao.fetchEmino(userId, productId);
 	}
 
 }

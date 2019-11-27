@@ -15,7 +15,7 @@ public class Admin {
 	private String username;
 	@Column
 	private String password;
-	
+
 	public Admin() {
 		super();
 	}
@@ -40,7 +40,7 @@ public class Admin {
 	public String toString() {
 		return "Admin [username=" + username + ", password=" + password + "]";
 	}
-	
-	
+
+
 
 }

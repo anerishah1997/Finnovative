@@ -15,7 +15,7 @@ public class AdminServiceimpl implements AdminService{
 	private AdminDao adminDao;
 	@Override
 	public int checkLogin(String username, String password) {
-		
+
 		int result=adminDao.readLogin(username,password);
 		if(result==1)
 			return 1;
@@ -31,7 +31,7 @@ public class AdminServiceimpl implements AdminService{
 	@Override
 	public Users findUserById(int userId) {
 		return adminDao.readUserById(userId);
-		
+
 	}
 
 	@Override

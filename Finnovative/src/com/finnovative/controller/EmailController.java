@@ -24,48 +24,48 @@ public class EmailController {
 	@Autowired
 	private MailSender mailsender;
 	@Autowired
-	 private SimpleMailMessage message ;
-	 
+	private SimpleMailMessage message ;
+
 	@Autowired
 	private EmailService emailService;
-	
-	
+
+
 	@RequestMapping(path="forgotPasswordPage",method=RequestMethod.GET)
 	public String forgotPasswordPage()
 	{
 		return "forgotpassword";
-		
+
 	}
 	@RequestMapping(path="forgotpassword.do",method=RequestMethod.GET)
-	public ModelAndView forgotPassword(@RequestParam("email")String email,HttpServletRequest request,HttpSession session)
+	public ModelAndView forgotPassword(@RequestParam("email")String email,HttpServletRequest request)
 	{
-		
+
 		int otp = (int)(Math.random()*9000)+1000;
 		request.setAttribute("otp", otp);
 		ModelAndView mav=new ModelAndView("forgotpassword");
 		mav.addObject("otp", otp);
 		mav.addObject("email", email);
 		String pass = emailService.check(email);
-		
+
 		message.setTo(email);
 		message.setSubject("YOUR ONE TIME PASSWORD");
 		message.setText("Hello your OTP is "+otp+".");
 		mailsender.send(message);
 		return mav;
-		
+
 	}
 	@RequestMapping(path="checkOtp.do",method=RequestMethod.GET)
 	public ModelAndView checkotp(@RequestParam("OTP")int otp2,@RequestParam("otp") int otp1,HttpServletRequest request, @RequestParam("email") String email)
 	{
 		ModelAndView mav=new ModelAndView("updatePassword");
 		mav.addObject("email", email);
-		
+
 		if(otp1==otp2)
-		    return mav;
+			return mav;
 		else
 		{
-			 mav=new ModelAndView("Error");
-			 return mav;
+			mav=new ModelAndView("Error");
+			return mav;
 		}
 
 	}
@@ -73,23 +73,19 @@ public class EmailController {
 	public String updatePass(@RequestParam("pass")String pass,@RequestParam("email") String email,HttpServletRequest request)
 	{
 		String password=request.getParameter("pass");
-		
+
 		String result=service.modifyPassword(password,email);
 		if(result!=null)
 			return "userlogin";
 		else 
 			return "Error";
 	}
-	
-	@RequestMapping(path="forgotPasswordSuccess",method=RequestMethod.GET)
-	public String forgotPasswordSuccessPage()
-	{
-		return "FORGOTPASSWORDSUCCESS";
-	}
+
+
 	@ExceptionHandler({Exception.class})
 	public String handleException() {
 		return "Error";
-	    
-	
-}
+
+
+	}
 }

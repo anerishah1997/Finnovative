@@ -19,7 +19,7 @@ import org.springframework.stereotype.Component;
 
 @Entity
 @Component
-@Scope(value="prototype")
+
 public class Installment {
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator= "installment_sequence")

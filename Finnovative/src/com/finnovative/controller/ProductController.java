@@ -23,34 +23,34 @@ import com.finnovative.service.ProductServiceImpl;
 @Controller
 
 public class ProductController {
-@Autowired
-private Product product;
-@Autowired
-private ProductServiceImpl service;
+	@Autowired
+	private Product product;
+	@Autowired
+	private ProductServiceImpl service;
 
-@RequestMapping(path="ProductListPage", method=RequestMethod.GET)
-public String viewProduct(Model model){
-	List<Product> list = service.findAllProducts();
-	model.addAttribute("productList", list);
-	return "productlist";
-}
-	
-@RequestMapping(path="buyProduct.do", method=RequestMethod.GET)
-public ModelAndView viewDetailsPage(@RequestParam("productId") int productId,Model model, HttpServletRequest request){
-	Product product = service.findProductById(productId);
-	HttpSession session = request.getSession();
-	session.setAttribute("product", product);
-	ModelAndView mav = new ModelAndView("buyProducts");
-	mav.addObject("product", product);
-	
-	return mav;
-}
-@ExceptionHandler({Exception.class})
-public String handleException() {
-	return "Error";
-    
+	@RequestMapping(path="ProductListPage", method=RequestMethod.GET)
+	public String viewProduct(Model model){
+		List<Product> list = service.findAllProducts();
+		model.addAttribute("productList", list);
+		return "productlist";
+	}
 
-}
+	@RequestMapping(path="buyProduct.do", method=RequestMethod.GET)
+	public ModelAndView viewDetailsPage(@RequestParam("productId") int productId,Model model, HttpServletRequest request){
+		Product product = service.findProductById(productId);
+		HttpSession session = request.getSession();
+		session.setAttribute("product", product);
+		ModelAndView mav = new ModelAndView("buyProducts");
+		mav.addObject("product", product);
+
+		return mav;
+	}
+	@ExceptionHandler({Exception.class})
+	public String handleException() {
+		return "Error";
+
+
+	}
 }
 
 

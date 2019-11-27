@@ -19,30 +19,30 @@ import com.finnovative.service.AdminService;
 
 @Controller
 public class AdminController {
-	
+
 	@Autowired
 	private AdminService adminService;
-	
+
 	@Autowired
 	private Users user;
-	
+
 	@Autowired
-	 private SimpleMailMessage message ;
-	
+	private SimpleMailMessage message ;
+
 	@Autowired
 	private MailSender mailsender;
-	
+
 	@RequestMapping(path="adminLoginPage", method=RequestMethod.GET)
 	public String adminLoginPage(){
 		return "adminlogin";
 	}
-	
-	
-	
+
+
+
 	@RequestMapping(path="adminlogin.do",method=RequestMethod.POST)
 	public String AdminLogin(@RequestParam("adminLogin")String username, @RequestParam("adminPassword")String password,Model model){
-		
-		
+
+
 		int result=adminService.checkLogin(username,password);
 		if(result==1){
 			List<Users> userList = adminService.findAllUsers();
@@ -52,7 +52,7 @@ public class AdminController {
 		else
 			return "adminlogin";
 	}
-	
+
 	@RequestMapping(path="viewDetails.do", method=RequestMethod.GET)
 	public ModelAndView viewDetailsPage(@RequestParam("userId") int userId,Model model){
 		Users user = adminService.findUserById(userId);
@@ -61,7 +61,7 @@ public class AdminController {
 		//model.addAttribute("user", user);
 		return mav;
 	}
-	
+
 	@RequestMapping(path="verifyUser.do", method=RequestMethod.GET)
 	public String verifyUser(@RequestParam("userId") int userId, Model model,@RequestParam("email") String email, @RequestParam("username") String username)
 	{
@@ -69,7 +69,7 @@ public class AdminController {
 		if(result)
 		{
 			message.setTo(email);
-			message.setSubject("VERIFICATION");
+			message.setSubject("APPLICATION APPROVED");
 			message.setText("Hello "+username+" your details are verified. You can login to proceed further.");
 			mailsender.send(message);
 			List<Users> userList = adminService.findAllUsers();
@@ -78,38 +78,42 @@ public class AdminController {
 		}
 		else
 			return "Error";
-			
+
 	}
-	
-	
+
+
 	@RequestMapping(path="rejectUser.do", method=RequestMethod.GET)
-	public String rejectUser(@RequestParam("userId") int userId, Model model)
+	public String rejectUser(@RequestParam("userId") int userId, Model model,@RequestParam("email") String email, @RequestParam("username") String username)
 	{
 		boolean result = adminService.dismissUser(userId);
 		if(result)
 		{
+			message.setTo(email);
+			message.setSubject("APPLICATION REJECTED");
+			message.setText("Hello "+username+", you are not eligible for EMI card due to some incorrect information.Please Register again.");
+			mailsender.send(message);
 			List<Users> userList = adminService.findAllUsers();
 			model.addAttribute("userList", userList);
 			return "adminDashboard";
 		}
 		else
 			return "Error";
-			
+
 	}
-	
-	 @RequestMapping(path="adminDashboardPage",method=RequestMethod.GET)
-	 public String showDashboard(ModelMap model){
-		 
-		 
-		 List<Users> userList = adminService.findAllUsers();
-			model.addAttribute("userList", userList);
-			return "adminDashboard";
-	 }
-	 @ExceptionHandler({Exception.class})
-		public String handleException() {
-			return "Error";
-		    
-		
+
+	@RequestMapping(path="adminDashboardPage",method=RequestMethod.GET)
+	public String showDashboard(ModelMap model){
+
+
+		List<Users> userList = adminService.findAllUsers();
+		model.addAttribute("userList", userList);
+		return "adminDashboard";
 	}
-	
+	@ExceptionHandler({Exception.class})
+	public String handleException() {
+		return "Error";
+
+
+	}
+
 }

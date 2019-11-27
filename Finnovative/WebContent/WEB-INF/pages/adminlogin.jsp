@@ -61,7 +61,7 @@
 		<footer class="footer1">
 		<p align="center">©Copyright Finnovative Financial Services</p>
 		</footer>
-</body>
+
 </div>
 </body>
 </html>
